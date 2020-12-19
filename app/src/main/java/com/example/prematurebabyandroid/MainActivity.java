@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,9 +16,6 @@ public class MainActivity extends AppCompatActivity {
     EditText patientIDinput;
     Button searchButton;
     TextView searchedFor;
-
-//    private CharacterAPI characterAPI;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +34,26 @@ public class MainActivity extends AppCompatActivity {
                         Intent toFoundPatient = new Intent(getApplicationContext(), FoundPatientActivity.class);
                         String patientID_string = patientIDinput.getText().toString();
                         int patientID = Integer.parseInt(patientID_string);
-//                        String patientID = "Showing data for patient "+patientIDinput.getText().toString();
-//                        searchedFor.setText(patientID);
                         CharacterController characterController = new CharacterController();
-                        characterController.start(patientID_string);
+                        Character character = new Character();
+                        CharacterCallback characterCallback = new CharacterCallback() {
+                            @Override
+                            public void onSuccess(Character characterCalled) {
+                                character.setID(characterCalled.getID());
+                                character.setName(characterCalled.getName());
+                                System.out.println("Name: " + character.getName() + " ID: " + character.getID());
+                                startActivity(toFoundPatient);
+                            }
+
+                            @Override
+                            public void onError(Throwable throwable) {
+
+                            }
+                        };
+                        characterController.Start(patientID_string, characterCallback);
                         toFoundPatient.putExtra("EXTRA_PATIENT_ID", patientID);
-                        startActivity(toFoundPatient);
+                        toFoundPatient.putExtra("EXTRA_PATIENT", (Parcelable) character);
+
 
                     }
                 }

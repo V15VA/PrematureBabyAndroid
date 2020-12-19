@@ -27,6 +27,7 @@ public class FoundPatientActivity extends AppCompatActivity {
         setContentView(R.layout.found_patient);
 
         int patientID = getIntent().getIntExtra("EXTRA_PATIENT_ID",0);
+        Character character = getIntent().getParcelableExtra("EXTRA_PATIENT");
 
         searchedFor = (TextView)findViewById(R.id.searched_for);
         tv_ViewDiary = (TextView)findViewById(R.id.tv_View_Diary);
@@ -36,7 +37,7 @@ public class FoundPatientActivity extends AppCompatActivity {
         iv_Summary = (ImageView) findViewById(R.id.iv_summary);
         iv_Measurement = (ImageView) findViewById(R.id.iv_measurement);
 
-        String message = "Showing data for patient " + patientID;
+        String message = "Showing data for patient " + character.getName() + " with ID " + character.getID();
         searchedFor.setText(message);
 
 
