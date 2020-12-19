@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/et_patient_id_input"
+        android:layout_width="800px"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="Patient ID"
+        android:inputType="number"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.454" />
+
+    <ImageView
+        android:id="@+id/ic_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/et_patient_id_input"
+        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.453"
+        app:srcCompat="@drawable/ic_search" />
+
+    <Button
+        android:id="@+id/bt_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintStart_toEndOf="@+id/et_patient_id_input"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.456" />
+
+    <TextView
+        android:id="@+id/searched_for"
+        android:layout_width="449dp"
+        android:layout_height="33dp"
+        app:layout_constraintBottom_toTopOf="@+id/et_patient_id_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45" />
+
+    <ImageView
+        android:id="@+id/iv_measurement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.705"
+        app:layout_constraintStart_toEndOf="@+id/iv_diary"
+        app:layout_constraintTop_toTopOf="@+id/iv_diary"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_measurement" />
+
+    <ImageView
+        android:id="@+id/iv_summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/iv_measurement"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toEndOf="@+id/iv_diary"
+        app:layout_constraintTop_toTopOf="@+id/iv_diary"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_summary" />
+
+    <ImageView
+        android:id="@+id/iv_diary"
+        android:layout_width="109dp"
+        android:layout_height="114dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.21"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_patient_id_input"
+        app:layout_constraintVertical_bias="0.465"
+        app:srcCompat="@drawable/ic_diary" />
+
+    <TextView
+        android:id="@+id/tv_View_Diary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Diary"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iv_diary"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/iv_diary"
+        app:layout_constraintTop_toBottomOf="@+id/iv_diary"
+        app:layout_constraintVertical_bias="0.324" />
+
+    <TextView
+        android:id="@+id/tv_View_Summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Summary"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_View_Diary"
+        app:layout_constraintEnd_toEndOf="@+id/iv_summary"
+        app:layout_constraintStart_toStartOf="@+id/iv_summary"
+        app:layout_constraintTop_toTopOf="@+id/tv_View_Diary" />
+
+    <TextView
+        android:id="@+id/tv_Enter_Measurement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Measurement"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_View_Summary"
+        app:layout_constraintEnd_toEndOf="@+id/iv_measurement"
+        app:layout_constraintStart_toStartOf="@+id/iv_measurement"
+        app:layout_constraintTop_toTopOf="@+id/tv_View_Summary" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
