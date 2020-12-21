@@ -38,6 +38,7 @@ public class CharacterController {
             Character character = response.body();
 //                    character = response.body();
                     System.out.println("SUCCESS");
+                    System.out.println(response.body());
 //                    System.out.println(character.getName());
                     returnCharacter(character);
                     if (callback != null) {

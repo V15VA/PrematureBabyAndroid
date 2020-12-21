@@ -8,14 +8,16 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface PatientAPI {
-//    @POST("/patients")
+    //    @POST("/patients")
 //    Call<Patient> createPatient(@Body Patient patient);
 //
+
+    @POST("patients")
 //    @FormUrlEncoded
-//    @POST("patients")
-//    Call<Patient> createPatient(@Field("patient_id") )
-    @GET("/api/character")
-    Call<Patient> getAllNames();
+    Call<ComTest> testPost(@Body POST post);
+
+    @GET("patients")
+    Call<ComTest> testGet();
 
 
 }

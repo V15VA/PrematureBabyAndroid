@@ -12,4 +12,7 @@ public interface CharacterAPI {
     @GET("/api/character/{id}")
     Call<Character> getCharacterByID(@Path("id") String id);
 //    Call<Character> loadCharacter(@Query("q") String status);
+
+    @GET("/patients")
+    Call<Character> test(@Query("q") String status);
 }

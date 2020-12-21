@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         searchButton = (Button)findViewById(R.id.bt_search);
         searchedFor = (TextView)findViewById(R.id.searched_for);
 
+        PatientController patientController = new PatientController();
+        patientController.Start();
+
 
         searchButton.setOnClickListener(
                 new View.OnClickListener() {
