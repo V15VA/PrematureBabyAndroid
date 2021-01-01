@@ -35,11 +35,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent toFoundPatient = new Intent(getApplicationContext(), FoundPatientActivity.class);
+
                         String patientID_string = patientIDinput.getText().toString();
                         int patientID = Integer.parseInt(patientID_string);
                         CharacterController characterController = new CharacterController();
                         Character character = new Character();
                         CharacterCallback characterCallback = new CharacterCallback() {
+
                             @Override
                             public void onSuccess(Character characterCalled) {
                                 character.setID(characterCalled.getID());

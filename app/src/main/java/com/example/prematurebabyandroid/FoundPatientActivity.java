@@ -30,9 +30,11 @@ public class FoundPatientActivity extends AppCompatActivity {
         Character character = getIntent().getParcelableExtra("EXTRA_PATIENT");
 
         searchedFor = (TextView)findViewById(R.id.searched_for);
+
         tv_ViewDiary = (TextView)findViewById(R.id.tv_View_Diary);
         tv_ViewSummary = (TextView)findViewById(R.id.tv_View_Summary);
         tv_EnterMeasurement = (TextView)findViewById(R.id.tv_Enter_Measurement);
+
         iv_Diary = (ImageView) findViewById(R.id.iv_diary);
         iv_Summary = (ImageView) findViewById(R.id.iv_summary);
         iv_Measurement = (ImageView) findViewById(R.id.iv_measurement);
