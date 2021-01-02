@@ -50,14 +50,20 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+   // Called when the user taps the search button in view_home.xml
 
-    public void searchId(View v) {
+    public void searchId(View view) {
+
+        // Do something in response to button
+
         Intent toFoundPatient = new Intent(getApplicationContext(), FoundPatientActivity.class);
 
         String patientID_string = patientIDinput.getText().toString();
         int patientID = Integer.parseInt(patientID_string);
+
         CharacterController characterController = new CharacterController();
         Character character = new Character();
+
         CharacterCallback characterCallback = new CharacterCallback() {
 
             @Override
@@ -72,11 +78,12 @@ public class MainActivity extends AppCompatActivity {
             public void onError(Throwable throwable) {
 
             }
+
         };
+
         characterController.Start(patientID_string, characterCallback);
         toFoundPatient.putExtra("EXTRA_PATIENT_ID", patientID);
         toFoundPatient.putExtra("EXTRA_PATIENT", (Parcelable) character);
-
 
     }
 

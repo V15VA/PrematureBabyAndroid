@@ -10,67 +10,71 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+
+
+
 public class FoundPatientActivity extends AppCompatActivity {
 
-    EditText patientIDinput;
+
     TextView searchedFor;
-    TextView tv_ViewDiary;
-    TextView tv_ViewSummary;
-    TextView tv_EnterMeasurement;
-    ImageView iv_Diary;
-    ImageView iv_Summary;
-    ImageView iv_Measurement;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.found_patient);
 
-        int patientID = getIntent().getIntExtra("EXTRA_PATIENT_ID",0);
+
+        //not sure what this does?
+
+        int patientID = getIntent().getIntExtra("EXTRA_PATIENT_ID", 0);
         Character character = getIntent().getParcelableExtra("EXTRA_PATIENT");
 
-        searchedFor = (TextView)findViewById(R.id.searched_for);
 
-        tv_ViewDiary = (TextView)findViewById(R.id.tv_View_Diary);
-        tv_ViewSummary = (TextView)findViewById(R.id.tv_View_Summary);
-        tv_EnterMeasurement = (TextView)findViewById(R.id.tv_Enter_Measurement);
 
-        iv_Diary = (ImageView) findViewById(R.id.iv_diary);
-        iv_Summary = (ImageView) findViewById(R.id.iv_summary);
-        iv_Measurement = (ImageView) findViewById(R.id.iv_measurement);
-
+        searchedFor = (TextView) findViewById(R.id.searched_for);
         String message = "Showing data for patient " + character.getName() + " with ID " + character.getID();
         searchedFor.setText(message);
 
+    }
 
-        iv_Diary.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+
+
+
+                    // Called when the user taps the View Diary button in found_patient.xml
+
+                    public void enterDiary(View view) {
+
+                        // Do something in response to button
+
                         Intent toDiary = new Intent(getApplicationContext(), DiaryActivity.class);
                         startActivity(toDiary);
                     }
-                }
-        );
 
-        iv_Summary.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+
+                    // Called when the user taps the View Summary button in found_patient.xml
+
+                    public void enterSummary(View view) {
+
+                        // Do something in response to button
+
                         Intent toSummary = new Intent(getApplicationContext(), SummaryActivity.class);
                         startActivity(toSummary);
                     }
-                }
-        );
 
-        iv_Measurement.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+
+                    // Called when the user taps the Enter Measurement button in found_patient.xml
+
+                    public void enterMeasurement(View view) {
+
+                        // Do something in response to button
+
                         Intent toNewMeasurement = new Intent(getApplicationContext(), NewMeasurementActivity.class);
                         startActivity(toNewMeasurement);
                     }
-                }
-        );
-    }
+
+
+
+
 }
