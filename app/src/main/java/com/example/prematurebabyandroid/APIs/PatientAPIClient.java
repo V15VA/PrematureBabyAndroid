@@ -12,7 +12,7 @@ public class PatientAPIClient {
     private static Gson gson = null;
     private static final String BASE_URL = "https://premhealthbabyservlet.herokuapp.com/";
 
-    static Retrofit getClient() {
+    public static Retrofit getClient() {
         gson = new GsonBuilder()
                 .setLenient()
                 .create();

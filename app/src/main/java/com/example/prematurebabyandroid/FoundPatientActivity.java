@@ -5,18 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-
-
-
 public class FoundPatientActivity extends AppCompatActivity {
 
-
+    EditText patientIDinput;
     TextView searchedFor;
 
 
@@ -25,17 +20,14 @@ public class FoundPatientActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.found_patient);
 
-
-        //not sure what this does?
-
         int patientID = getIntent().getIntExtra("EXTRA_PATIENT_ID", 0);
-        Character character = getIntent().getParcelableExtra("EXTRA_PATIENT");
+//        OLD_Character OLDCharacter = getIntent().getParcelableExtra("EXTRA_PATIENT");
 
 
 
         searchedFor = (TextView) findViewById(R.id.searched_for);
-        String message = "Showing data for patient " + character.getName() + " with ID " + character.getID();
-        searchedFor.setText(message);
+//        String message = "Showing data for patient " + OLDCharacter.getName() + " with ID " + OLDCharacter.getID();
+//        searchedFor.setText(message);
 
     }
 
