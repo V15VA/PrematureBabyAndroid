@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Premature Baby Health Monitor</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="concentration">mmol/L</string>
+    <string name="concentrationText">Concentration</string>
+    <string name="time">Time:</string>
+    <string name="potassium">Potassium:</string>
+    <string name="sodium">Sodium:</string>
+    <string name="lactate">Lactate:</string>
+    <string name="glucose">Glucose:</string>
+    <string name="notes">Notes:</string>
 </resources>
