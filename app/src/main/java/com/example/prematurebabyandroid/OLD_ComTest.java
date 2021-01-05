@@ -3,7 +3,7 @@ package com.example.prematurebabyandroid;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ComTest {
+public class OLD_ComTest {
     @SerializedName("patientID")
     @Expose
     private String patientID;

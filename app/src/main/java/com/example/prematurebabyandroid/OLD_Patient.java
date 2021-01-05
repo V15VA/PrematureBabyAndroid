@@ -2,51 +2,53 @@ package com.example.prematurebabyandroid;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Patient {
+import java.sql.Time;
+
+public class OLD_Patient {
     @SerializedName("patient_id")
-    private int patient_id;
+    private String patient_id;
 
     @SerializedName("time_")
-    private String time_;
+    private Time time_;
 
     @SerializedName("potassium")
-    private float potassium;
+    private double potassium;
 
     @SerializedName("sodium")
-    private float sodium;
+    private double sodium;
 
     @SerializedName("lactate")
-    private float lactate;
+    private double lactate;
 
     @SerializedName("glucose")
-    private float glucose;
+    private double glucose;
 
-    public Patient(int patient_id, String time_, float potassium, float sodium, float lactate, float glucose) {
-        this.patient_id = patient_id;
-        this.time_ = time_;
-        this.potassium = potassium;
-        this.sodium = sodium;
-        this.lactate = lactate;
-        this.glucose = glucose;
-    }
+//    public Patient(String patient_id, String time_, float potassium, float sodium, float lactate, float glucose) {
+//        this.patient_id = patient_id;
+//        this.time_ = time_;
+//        this.potassium = potassium;
+//        this.sodium = sodium;
+//        this.lactate = lactate;
+//        this.glucose = glucose;
+//    }
 
-    public int getPatient_id() {
+    public String getPatient_id() {
         return patient_id;
     }
 
-    public void setPatient_id(int patient_id) {
+    public void setPatient_id(String patient_id) {
         this.patient_id = patient_id;
     }
 
-    public String getTime_() {
+    public Time getTime_() {
         return time_;
     }
 
-    public void setTime_(String time_) {
+    public void setTime_(Time time_) {
         this.time_ = time_;
     }
 
-    public float getPotassium() {
+    public double getPotassium() {
         return potassium;
     }
 
@@ -54,7 +56,7 @@ public class Patient {
         this.potassium = potassium;
     }
 
-    public float getSodium() {
+    public double getSodium() {
         return sodium;
     }
 
@@ -62,7 +64,7 @@ public class Patient {
         this.sodium = sodium;
     }
 
-    public float getLactate() {
+    public double getLactate() {
         return lactate;
     }
 
@@ -70,7 +72,7 @@ public class Patient {
         this.lactate = lactate;
     }
 
-    public float getGlucose() {
+    public double getGlucose() {
         return glucose;
     }
 

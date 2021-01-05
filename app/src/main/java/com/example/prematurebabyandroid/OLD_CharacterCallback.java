@@ -1,7 +1,7 @@
 package com.example.prematurebabyandroid;
 
 
-public interface CharacterCallback  {
+public interface OLD_CharacterCallback {
 //    Patient globalPatient = new Character();
 
 //    public void setGlobalPatientID(int id){
@@ -11,7 +11,7 @@ public interface CharacterCallback  {
 //    public int getGlobalPatientID(){
 //        return globalPatient.getPatient_id();
 //    }
-    void onSuccess(Character character);
+    void onSuccess(OLD_Character OLDCharacter);
 
     void  onError(Throwable throwable);
 
