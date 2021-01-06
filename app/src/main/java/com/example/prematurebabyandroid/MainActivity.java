@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.prematurebabyandroid.APIs.PatientAPIClient;
 import com.example.prematurebabyandroid.APIs.PatientAPIInterface;
@@ -37,11 +38,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_home);
 
-
         patientIDinput = (EditText) findViewById(R.id.et_patient_id_input);
         searchButton = (Button) findViewById(R.id.bt_search);
         searchedFor = (TextView) findViewById(R.id.searched_for);
 
+//        Creates a new instance of the patientAPIInterface interface, and in turn a new Retrofit2
+//        instance for communicating with the server
         patientAPIInterface = PatientAPIClient.getClient().create(PatientAPIInterface.class);
 
 //        OLD_PatientController OLDPatientController = new OLD_PatientController();
@@ -53,12 +55,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void searchId(View view) {
 
-        // Do something in response to button
-
+//        Creates an intent to move to the FoundPatient activity
         Intent toFoundPatient = new Intent(getApplicationContext(), FoundPatientActivity.class);
+
+//        Gets the input from the "patietnIDinput" edit text widget
         String patientID_string = patientIDinput.getText().toString();
+
+//        Sets the input to zero if it is not valid
+        if (patientID_string.length()<4) {patientID_string = "0";}
+
+//        Converts the text to an integer
         int patientID = Integer.parseInt(patientID_string);
 
+//        Creates a new instance of the sqlEditClinician class with arbitrary values and the
+//        specified patient ID
         SQLEditClinician sqlEditClinician = new SQLEditClinician(patientID, "",
                 0, 0, 0, 0, "",
                 Time.valueOf("00:00:00"));
@@ -81,11 +91,18 @@ public class MainActivity extends AppCompatActivity {
 //                        };
 //                        OLDCharacterController.Start(patientID_string, OLDCharacterCallback);
 
+//        Creates a new POST request of the from SendNewPatientData and queues it to be sent
         Call<String> call = patientAPIInterface.SendNewPatientData(sqlEditClinician);
+
+//        Callback functions which activate if a response is received from the server
+//        onResponse is called when the server responds, onFailure if there is no response
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
+
+//                  If the server reports a successful response, do the following
+
                     System.out.println("SUCCESS");
 //                    System.out.println(response.body());
 
@@ -97,9 +114,33 @@ public class MainActivity extends AppCompatActivity {
                     Gson patientGson = new Gson();
                     Patient patient = patientGson.fromJson(patientString, Patient.class);
 
-                    System.out.println(patient.getRow(0));
+                    if (patient.getLen() != 0) {
+//                        Displays a Toast notification to the user showing that the patient ID is
+//                        valid
+                        Toast.makeText(MainActivity.this, "Patient Found!",
+                                Toast.LENGTH_LONG).show();
+
+                        System.out.println(patient.getRow(0));
+
+//                        Send the patient ID and the patient class to the next activity
+                        toFoundPatient.putExtra("EXTRA_PATIENT_ID", patientID);
+                        toFoundPatient.putExtra("EXTRA_PATIENT", (Parcelable) patient);
+
+//                        Starts the next activity
+                        startActivity(toFoundPatient);
+                    }
+
+                    else{
+//                        Displays a Toast notification to the user showing that the patient ID is
+//                        not valid
+                        Toast.makeText(MainActivity.this, "Patient not found in Database!",
+                        Toast.LENGTH_LONG).show();
+                    }
+
                 }
                 else {
+
+//                  If the server reports an unsuccessful response, print the error as a string
                     try {
                         System.out.println(response.errorBody().string());
                     } catch (IOException e) {
@@ -111,13 +152,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
+//              If the connection to the server fails, print the error
                 t.printStackTrace();
                 System.out.println("CONNECTION FAIL");
             }
         });
-
-        toFoundPatient.putExtra("EXTRA_PATIENT_ID", patientID);
-//                        toFoundPatient.putExtra("EXTRA_PATIENT", (Parcelable) OLDC
-
     }
 }

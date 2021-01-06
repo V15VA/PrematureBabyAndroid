@@ -10,9 +10,13 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class PatientAPIClient {
     private static Retrofit retrofit = null;
     private static Gson gson = null;
+
+//    Defines the base URL, requests can be sent to pages on this URL
     private static final String BASE_URL = "https://premhealthbabyservlet.herokuapp.com/";
 
+//    Creates a new Retrofit2 instance for handling POST and GET requests
     public static Retrofit getClient() {
+//        For JSON file handling
         gson = new GsonBuilder()
                 .setLenient()
                 .create();

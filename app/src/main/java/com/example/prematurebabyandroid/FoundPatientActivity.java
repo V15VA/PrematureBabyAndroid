@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.prematurebabyandroid.POJOs.Patient;
+
 public class FoundPatientActivity extends AppCompatActivity {
 
     EditText patientIDinput;
@@ -22,6 +24,7 @@ public class FoundPatientActivity extends AppCompatActivity {
 
         int patientID = getIntent().getIntExtra("EXTRA_PATIENT_ID", 0);
 //        OLD_Character OLDCharacter = getIntent().getParcelableExtra("EXTRA_PATIENT");
+        Patient patient = getIntent().getParcelableExtra("EXTRA_PATIENT");
 
 
 
