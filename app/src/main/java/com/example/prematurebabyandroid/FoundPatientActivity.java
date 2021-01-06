@@ -15,6 +15,7 @@ public class FoundPatientActivity extends AppCompatActivity {
 
     EditText patientIDinput;
     TextView searchedFor;
+    private int patientID;
 
 
     @Override
@@ -22,7 +23,7 @@ public class FoundPatientActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.found_patient);
 
-        int patientID = getIntent().getIntExtra("EXTRA_PATIENT_ID", 0);
+        patientID = getIntent().getIntExtra("EXTRA_PATIENT_ID", 0);
 //        OLD_Character OLDCharacter = getIntent().getParcelableExtra("EXTRA_PATIENT");
         Patient patient = getIntent().getParcelableExtra("EXTRA_PATIENT");
 
@@ -35,39 +36,39 @@ public class FoundPatientActivity extends AppCompatActivity {
     }
 
 
+    // Called when the user taps the View Diary button in found_patient.xml
+
+    public void enterDiary(View view) {
+
+        // Do something in response to button
+
+        Intent toDiary = new Intent(getApplicationContext(), DiaryActivity.class);
+        startActivity(toDiary);
+    }
 
 
-                    // Called when the user taps the View Diary button in found_patient.xml
+    // Called when the user taps the View Summary button in found_patient.xml
 
-                    public void enterDiary(View view) {
+    public void enterSummary(View view) {
 
-                        // Do something in response to button
+        // Do something in response to button
 
-                        Intent toDiary = new Intent(getApplicationContext(), DiaryActivity.class);
-                        startActivity(toDiary);
-                    }
-
-
-                    // Called when the user taps the View Summary button in found_patient.xml
-
-                    public void enterSummary(View view) {
-
-                        // Do something in response to button
-
-                        Intent toSummary = new Intent(getApplicationContext(), SummaryActivity.class);
-                        startActivity(toSummary);
-                    }
+        Intent toSummary = new Intent(getApplicationContext(), SummaryActivity.class);
+        startActivity(toSummary);
+    }
 
 
-                    // Called when the user taps the Enter Measurement button in found_patient.xml
+    // Called when the user taps the Enter Measurement button in found_patient.xml
 
-                    public void enterMeasurement(View view) {
+    public void enterMeasurement(View view) {
 
-                        // Do something in response to button
+        // Do something in response to button
 
-                        Intent toNewMeasurement = new Intent(getApplicationContext(), NewMeasurementActivity.class);
-                        startActivity(toNewMeasurement);
-                    }
+        Intent toNewMeasurement = new Intent(getApplicationContext(), NewMeasurementActivity.class);
+//      Send the patient ID to the next activity
+        toNewMeasurement.putExtra("EXTRA_PATIENT_ID", patientID);
+        startActivity(toNewMeasurement);
+    }
 
 
 
