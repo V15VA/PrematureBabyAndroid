@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,6 +52,8 @@ PatientAPIInterface patientAPIInterface;
     String event_Value;
     EditText event_Input;
 
+    Time time_Value_Sql;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,8 @@ PatientAPIInterface patientAPIInterface;
         time_Value = time_Input.getText().toString();
         System.out.println(time_Value);
 
+        time_Value_Sql = Time.valueOf(time_Value);
+
         potassium_Value = Float.valueOf(potassium_Input.getText().toString());
         System.out.println(potassium_Value);
 
@@ -103,7 +108,7 @@ PatientAPIInterface patientAPIInterface;
 //        TODO the code below work, I've left the variable names in the same format as your glucose etc.
 
         SQLEditClinician postPatient = new SQLEditClinician(patientID, notes_Value, glucose_Value,
-                lactate_Value, sodium_Value, potassium_Value, event_Value, time_Value);
+                lactate_Value, sodium_Value, potassium_Value, event_Value, time_Value_Sql);
 
 //        Creates an intent to move to the FoundPatient activity
         Intent toFoundPatient = new Intent(getApplicationContext(), FoundPatientActivity.class);

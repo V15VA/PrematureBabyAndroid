@@ -186,7 +186,7 @@
         android:layout_marginRight="16dp"
         android:ems="10"
         android:hint="Time of measurement"
-        android:inputType="time"
+        android:inputType="text"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/button"
         app:layout_constraintStart_toEndOf="@+id/textView2"
