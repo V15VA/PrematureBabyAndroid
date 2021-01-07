@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.text.format.Time;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +17,7 @@ import com.example.prematurebabyandroid.POJOs.SQLEditClinician;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.sql.Time;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,7 +42,7 @@ PatientAPIInterface patientAPIInterface;
     float glucose_Value;
     EditText glucose_Input;
 
-    java.sql.Time time_Value;
+    String time_Value;
     EditText time_Input;
 
     String notes_Value;
@@ -78,7 +78,7 @@ PatientAPIInterface patientAPIInterface;
 
         // Do something in response to button
 
-        time_Value = (java.sql.Time) time_Input.getText();
+        time_Value = time_Input.getText().toString();
         System.out.println(time_Value);
 
         potassium_Value = Float.valueOf(potassium_Input.getText().toString());
