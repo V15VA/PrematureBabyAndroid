@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.format.Time;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,13 +42,14 @@ PatientAPIInterface patientAPIInterface;
     float glucose_Value;
     EditText glucose_Input;
 
-    String time_Value;
+    java.sql.Time time_Value;
     EditText time_Input;
 
     String notes_Value;
     EditText notes_Input;
 
-
+    String event_Value;
+    EditText event_Input;
 
 
     @Override
@@ -63,6 +65,7 @@ PatientAPIInterface patientAPIInterface;
         lactate_Input = (EditText) findViewById(R.id.editTextLactateDecimal);
         glucose_Input = (EditText) findViewById(R.id.editTextGlucoseDecimal);
         notes_Input = (EditText) findViewById(R.id.editTextTextNotes);
+        event_Input = (EditText) findViewById(R.id.editTextTextEvent);
 
 //        Creates a new instance of the patientAPIInterface interface, and in turn a new Retrofit2
 //        instance for communicating with the server
@@ -75,7 +78,7 @@ PatientAPIInterface patientAPIInterface;
 
         // Do something in response to button
 
-        time_Value = time_Input.getText().toString();
+        time_Value = (java.sql.Time) time_Input.getText();
         System.out.println(time_Value);
 
         potassium_Value = Float.valueOf(potassium_Input.getText().toString());
@@ -93,10 +96,13 @@ PatientAPIInterface patientAPIInterface;
         notes_Value = notes_Input.getText().toString();
         System.out.println(notes_Value);
 
+        event_Value = event_Input.getText().toString();
+        System.out.println(event_Value);
+
 //        TODO To Greg: Add a user input for comments (type: string) and events (type: string) to make
 //        TODO the code below work, I've left the variable names in the same format as your glucose etc.
 
-        SQLEditClinician postPatient = new SQLEditClinician(patientID, comment_Value, glucose_Value,
+        SQLEditClinician postPatient = new SQLEditClinician(patientID, notes_Value, glucose_Value,
                 lactate_Value, sodium_Value, potassium_Value, event_Value, time_Value);
 
 //        Creates an intent to move to the FoundPatient activity
