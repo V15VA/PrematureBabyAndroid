@@ -9,4 +9,6 @@
     <string name="lactate">Lactate:</string>
     <string name="glucose">Glucose:</string>
     <string name="notes">Notes:</string>
+    <string name="event">Event:</string>
+    <string name="eventprompt">Description</string>
 </resources>

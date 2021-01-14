@@ -1,28 +1,25 @@
 package com.example.prematurebabyandroid;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.widget.Toast;
-
 import com.example.prematurebabyandroid.APIs.PatientAPIClient;
 import com.example.prematurebabyandroid.APIs.PatientAPIInterface;
 import com.example.prematurebabyandroid.POJOs.Patient;
 import com.example.prematurebabyandroid.POJOs.SQLEditClinician;
 import com.google.gson.Gson;
-
 import java.io.IOException;
-
+import java.sql.Time;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 public class NewMeasurementActivity extends AppCompatActivity {
+
 
 private int patientID;
 PatientAPIInterface patientAPIInterface;
@@ -47,7 +44,10 @@ PatientAPIInterface patientAPIInterface;
     String notes_Value;
     EditText notes_Input;
 
+    String event_Value;
+    EditText event_Input;
 
+    Time time_Value_Sql;
 
 
     @Override
@@ -63,6 +63,7 @@ PatientAPIInterface patientAPIInterface;
         lactate_Input = (EditText) findViewById(R.id.editTextLactateDecimal);
         glucose_Input = (EditText) findViewById(R.id.editTextGlucoseDecimal);
         notes_Input = (EditText) findViewById(R.id.editTextTextNotes);
+        event_Input = (EditText) findViewById(R.id.editTextTextEvent);
 
 //        Creates a new instance of the patientAPIInterface interface, and in turn a new Retrofit2
 //        instance for communicating with the server
@@ -73,10 +74,24 @@ PatientAPIInterface patientAPIInterface;
 
     public void sendPostRequest(View view) {
 
+
+
+
+        //unit testing
+
+         validate(event_Input.getText().toString(),notes_Input.getText().toString(),
+                 time_Input.getText().toString(), Float.valueOf(glucose_Input.getText().toString()),
+                 Float.valueOf(lactate_Input.getText().toString()), Float.valueOf(sodium_Input.getText().toString()),
+                 Float.valueOf(potassium_Input.getText().toString()));
+
+
+
         // Do something in response to button
 
         time_Value = time_Input.getText().toString();
         System.out.println(time_Value);
+
+        time_Value_Sql = Time.valueOf(time_Value);
 
         potassium_Value = Float.valueOf(potassium_Input.getText().toString());
         System.out.println(potassium_Value);
@@ -93,11 +108,14 @@ PatientAPIInterface patientAPIInterface;
         notes_Value = notes_Input.getText().toString();
         System.out.println(notes_Value);
 
-//        TODO To Greg: Add a user input for comments (type: string) and events (type: string) to make
-//        TODO the code below work, I've left the variable names in the same format as your glucose etc.
+        event_Value = event_Input.getText().toString();
+        System.out.println(event_Value);
 
-        SQLEditClinician postPatient = new SQLEditClinician(patientID, comment_Value, glucose_Value,
-                lactate_Value, sodium_Value, potassium_Value, event_Value, time_Value);
+
+
+
+        SQLEditClinician postPatient = new SQLEditClinician(patientID, notes_Value, glucose_Value,
+                lactate_Value, sodium_Value, potassium_Value, event_Value, time_Value_Sql);
 
 //        Creates an intent to move to the FoundPatient activity
         Intent toFoundPatient = new Intent(getApplicationContext(), FoundPatientActivity.class);
@@ -171,4 +189,31 @@ PatientAPIInterface patientAPIInterface;
         });
 
     }
+
+
+
+
+
+
+    //unit testing
+
+    public NewMeasurementActivity(Context context){
+
+    }
+
+    public String validate(String event_Input, String notes_Input, String time_Input,
+                           float glucose_Input, float lactate_Input, float sodium_Input,float potassium_Input )
+    {
+        if(event_Input.equals("event") && notes_Input.equals("notes") && time_Input.equals("00:00:00") && glucose_Input==0 && lactate_Input==0 && sodium_Input==0 && potassium_Input==0)
+
+        {
+            return "Entry was successful";
+        } else
+            return "Invalid entry!";
+    }
+
+
+
 }
+
+
