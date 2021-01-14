@@ -21,8 +21,8 @@ import retrofit2.Response;
 public class ClinicianNewMeasurementActivity extends AppCompatActivity {
 
 
-private int patientID;
-PatientAPIInterface patientAPIInterface;
+    private int patientID;
+    PatientAPIInterface patientAPIInterface;
 
 //Post request fields entered by user
 
@@ -55,6 +55,15 @@ PatientAPIInterface patientAPIInterface;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_clinician_enter_measurement);
 
+/*
+        //unit testing
+
+        validate(event_Input.getText().toString(),notes_Input.getText().toString(),
+                time_Input.getText().toString(), Float.valueOf(glucose_Input.getText().toString()),
+                Float.valueOf(lactate_Input.getText().toString()), Float.valueOf(sodium_Input.getText().toString()),
+                Float.valueOf(potassium_Input.getText().toString()));
+*/
+
         patientID = getIntent().getIntExtra("EXTRA_PATIENT_ID", 0);
 
         time_Input = (EditText) findViewById(R.id.editTextTime);
@@ -64,6 +73,7 @@ PatientAPIInterface patientAPIInterface;
         glucose_Input = (EditText) findViewById(R.id.editTextGlucoseDecimal);
         notes_Input = (EditText) findViewById(R.id.editTextTextNotes);
         event_Input = (EditText) findViewById(R.id.editTextTextEvent);
+
 
 //        Creates a new instance of the patientAPIInterface interface, and in turn a new Retrofit2
 //        instance for communicating with the server
@@ -75,14 +85,6 @@ PatientAPIInterface patientAPIInterface;
     public void sendPostRequest(View view) {
 
 
-
-
-        //unit testing
-
-         validate(event_Input.getText().toString(),notes_Input.getText().toString(),
-                 time_Input.getText().toString(), Float.valueOf(glucose_Input.getText().toString()),
-                 Float.valueOf(lactate_Input.getText().toString()), Float.valueOf(sodium_Input.getText().toString()),
-                 Float.valueOf(potassium_Input.getText().toString()));
 
 
 
@@ -192,7 +194,7 @@ PatientAPIInterface patientAPIInterface;
 
 
 
-
+/*
 
 
     //unit testing
@@ -213,7 +215,6 @@ PatientAPIInterface patientAPIInterface;
     }
 
 
-
+*/
 }
-
 
