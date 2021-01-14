@@ -11,27 +11,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PrematureBabyAndroid">
-        <activity android:name=".FoundPatientActivity" android:label="Patient Found" android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".EngineerDiaryActivity"
+            android:label="Service Mode"/>
+        <activity android:name=".EngineerLandingActivity" />
+        <activity android:name=".HomePageActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name=".NewMeasurementActivity"
+            android:name=".ClinicianFoundPatientActivity"
+            android:label="Patient Found"
+            android:parentActivityName=".ClinicianLandingActivity" />
+        <activity
+            android:name=".ClinicianNewMeasurementActivity"
             android:label="Add New Measurement"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ClinicianLandingActivity" />
         <activity
             android:name=".SummaryActivity"
             android:label="Patient Summary"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ClinicianLandingActivity" />
         <activity
-            android:name=".DiaryActivity"
-            android:label="Diary Activity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".ClinicainDiaryActivity"
+            android:label="Patient Activity"
+            android:parentActivityName=".ClinicianLandingActivity" />
         <activity
-            android:name=".MainActivity"
-            android:label="Home">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name=".ClinicianLandingActivity"
+            android:label="Search for a Patient">
         </activity>
     </application>
 

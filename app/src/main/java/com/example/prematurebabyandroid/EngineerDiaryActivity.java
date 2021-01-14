@@ -4,14 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class DiaryActivity extends AppCompatActivity {
+public class EngineerDiaryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_diary);
+        setContentView(R.layout.view_engineer_diary);
     }
-
-
-
 }

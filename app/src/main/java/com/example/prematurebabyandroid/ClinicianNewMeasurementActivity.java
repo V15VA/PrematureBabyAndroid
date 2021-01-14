@@ -18,7 +18,7 @@ import java.sql.Time;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-public class NewMeasurementActivity extends AppCompatActivity {
+public class ClinicianNewMeasurementActivity extends AppCompatActivity {
 
 
 private int patientID;
@@ -53,7 +53,7 @@ PatientAPIInterface patientAPIInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.enter_measurement);
+        setContentView(R.layout.view_clinician_enter_measurement);
 
         patientID = getIntent().getIntExtra("EXTRA_PATIENT_ID", 0);
 
@@ -118,7 +118,7 @@ PatientAPIInterface patientAPIInterface;
                 lactate_Value, sodium_Value, potassium_Value, event_Value, time_Value_Sql);
 
 //        Creates an intent to move to the FoundPatient activity
-        Intent toFoundPatient = new Intent(getApplicationContext(), FoundPatientActivity.class);
+        Intent toFoundPatient = new Intent(getApplicationContext(), ClinicianFoundPatientActivity.class);
 
 //        Creates a new POST request of the from SendNewPatientData and queues it to be sent
         Call<String> call = patientAPIInterface.SendNewPatientData(postPatient);
@@ -146,7 +146,7 @@ PatientAPIInterface patientAPIInterface;
                     if (patient.getLen() != 0) {
 //                        Displays a Toast notification to the user showing that the patient ID is
 //                        valid
-                        Toast.makeText(NewMeasurementActivity.this, "Patient Found!",
+                        Toast.makeText(ClinicianNewMeasurementActivity.this, "Patient Found!",
                                 Toast.LENGTH_LONG).show();
 
                         System.out.println(patient.getRow(0));
@@ -162,7 +162,7 @@ PatientAPIInterface patientAPIInterface;
                     else{
 //                        Displays a Toast notification to the user showing that the patient ID is
 //                        not valid
-                        Toast.makeText(NewMeasurementActivity.this,
+                        Toast.makeText(ClinicianNewMeasurementActivity.this,
                                 "Patient not found in Database!",
                                 Toast.LENGTH_LONG).show();
                     }
@@ -197,7 +197,7 @@ PatientAPIInterface patientAPIInterface;
 
     //unit testing
 
-    public NewMeasurementActivity(Context context){
+    public ClinicianNewMeasurementActivity(Context context){
 
     }
 

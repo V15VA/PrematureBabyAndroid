@@ -13,7 +13,7 @@ public class SummaryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_summary);
+        setContentView(R.layout.view_clinician_view_summary);
 
         //https://github.com/jjoe64/GraphView
         //example code so demonstrate use

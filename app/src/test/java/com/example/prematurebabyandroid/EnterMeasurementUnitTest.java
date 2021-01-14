@@ -22,7 +22,7 @@ public class EnterMeasurementUnitTest {
     @Test
     public void readStringFromContext_LocalizedString() {
 
-        NewMeasurementActivity myObjectUnderTest = new NewMeasurementActivity(mMockContext);
+        ClinicianNewMeasurementActivity myObjectUnderTest = new ClinicianNewMeasurementActivity(mMockContext);
 
         // ...when the string is returned from the object under test...
 

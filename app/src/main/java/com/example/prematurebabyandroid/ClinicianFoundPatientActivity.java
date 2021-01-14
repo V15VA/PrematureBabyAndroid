@@ -6,12 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.prematurebabyandroid.POJOs.Patient;
 
-public class FoundPatientActivity extends AppCompatActivity {
+public class ClinicianFoundPatientActivity extends AppCompatActivity {
 
     EditText patientIDinput;
     TextView searchedFor;
@@ -21,7 +20,7 @@ public class FoundPatientActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.found_patient);
+        setContentView(R.layout.view_clinician_found_patient);
 
         patientID = getIntent().getIntExtra("EXTRA_PATIENT_ID", 0);
 //        OLD_Character OLDCharacter = getIntent().getParcelableExtra("EXTRA_PATIENT");
@@ -42,7 +41,7 @@ public class FoundPatientActivity extends AppCompatActivity {
 
         // Do something in response to button
 
-        Intent toDiary = new Intent(getApplicationContext(), DiaryActivity.class);
+        Intent toDiary = new Intent(getApplicationContext(), ClinicainDiaryActivity.class);
         startActivity(toDiary);
     }
 
@@ -64,7 +63,7 @@ public class FoundPatientActivity extends AppCompatActivity {
 
         // Do something in response to button
 
-        Intent toNewMeasurement = new Intent(getApplicationContext(), NewMeasurementActivity.class);
+        Intent toNewMeasurement = new Intent(getApplicationContext(), ClinicianNewMeasurementActivity.class);
 //      Send the patient ID to the next activity
         toNewMeasurement.putExtra("EXTRA_PATIENT_ID", patientID);
         startActivity(toNewMeasurement);

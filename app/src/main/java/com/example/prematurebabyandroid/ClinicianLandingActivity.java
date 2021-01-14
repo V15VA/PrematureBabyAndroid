@@ -8,7 +8,6 @@ import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class ClinicianLandingActivity extends AppCompatActivity {
 
     EditText patientIDinput;
     Button searchButton;
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_home);
+        setContentView(R.layout.view_clinician_landing);
 
         patientIDinput = (EditText) findViewById(R.id.et_patient_id_input);
         searchButton = (Button) findViewById(R.id.bt_search);
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     public void searchId(View view) {
 
 //        Creates an intent to move to the FoundPatient activity
-        Intent toFoundPatient = new Intent(getApplicationContext(), FoundPatientActivity.class);
+        Intent toFoundPatient = new Intent(getApplicationContext(), ClinicianFoundPatientActivity.class);
 
 //        Gets the input from the "patietnIDinput" edit text widget
         String patientID_string = patientIDinput.getText().toString();
@@ -119,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                         if (patient.getLen() != 0) {
 //                        Displays a Toast notification to the user showing that the patient ID is
 //                        valid
-                            Toast.makeText(MainActivity.this, "Patient Found!",
+                            Toast.makeText(ClinicianLandingActivity.this, "Patient Found!",
                             Toast.LENGTH_LONG).show();
 
                             System.out.println(patient.getRow(0));
@@ -133,13 +132,13 @@ public class MainActivity extends AppCompatActivity {
                         } else {
 //                        Displays a Toast notification to the user showing that the patient ID is
 //                        not valid
-                            Toast.makeText(MainActivity.this, "Patient not found in Database!",
+                            Toast.makeText(ClinicianLandingActivity.this, "Patient not found in Database!",
                             Toast.LENGTH_LONG).show();
                         }
                     } catch (NullPointerException e){
 //                        Displays an Toast notification to the user if the servlet cannot handle
 //                        the input
-                        Toast.makeText(MainActivity.this, "Server Communication Error! Contact Support",
+                        Toast.makeText(ClinicianLandingActivity.this, "Server Communication Error! Contact Support",
                         Toast.LENGTH_LONG).show();
                     }
 
