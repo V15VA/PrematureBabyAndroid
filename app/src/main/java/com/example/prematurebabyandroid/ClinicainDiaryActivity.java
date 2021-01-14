@@ -10,6 +10,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.prematurebabyandroid.POJOs.Patient;
+
+import java.util.ArrayList;
+
 public class ClinicainDiaryActivity extends AppCompatActivity {
 
     @Override
@@ -20,7 +24,41 @@ public class ClinicainDiaryActivity extends AppCompatActivity {
         init();
     }
 
+    //https://stackoverflow.com/questions/18207470/adding-table-rows-dynamically-in-android
+
     public void init() {
+
+
+
+        ArrayList<String> comment = new ArrayList <String>();
+        ArrayList<String> event_type = new ArrayList <String>();
+        ArrayList<String> time = new ArrayList <String>();
+
+
+        ArrayList<Double> glucose = new ArrayList <Double>();
+        ArrayList<Double> lactate = new ArrayList <Double>();
+        ArrayList<Double> sodium = new ArrayList <Double>();
+        ArrayList<Double> potassium = new ArrayList <Double>();
+
+
+
+       //Patient(0, comment, glucose, lactate, sodium, potassium, event_type, time);
+
+
+
+
+
+        for (int i = 0; i < 100; i++) {
+            time.add(String.valueOf(i));
+            glucose.add((double) i);
+            lactate.add((double) i);
+            sodium.add((double) i);
+            potassium.add((double) i);
+        }
+
+
+
+
 
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
 
@@ -55,38 +93,38 @@ public class ClinicainDiaryActivity extends AppCompatActivity {
 
         stk.addView(tbrow0);
 
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < time.size(); i++) {
 
             //new row
 
             TableRow tbrow = new TableRow(this);
 
             TextView t0v = new TextView(this);
-            t0v.setText("" + i);
+            t0v.setText("" + time.get(i));
             t0v.setTextColor(Color.BLACK);
             t0v.setGravity(Gravity.CENTER);
             tbrow.addView(t0v);
 
             TextView t1v = new TextView(this);
-            t1v.setText("Product " + i);
+            t1v.setText("" + sodium.get(i) );
             t1v.setTextColor(Color.BLACK);
             t1v.setGravity(Gravity.CENTER);
             tbrow.addView(t1v);
 
             TextView t2v = new TextView(this);
-            t2v.setText("Rs." + i);
+            t2v.setText("" + potassium.get(i) );
             t2v.setTextColor(Color.BLACK);
             t2v.setGravity(Gravity.CENTER);
             tbrow.addView(t2v);
 
             TextView t3v = new TextView(this);
-            t3v.setText("" + i * 15 / 32 * 10);
+            t3v.setText("" + lactate.get(i) );
             t3v.setTextColor(Color.BLACK);
             t3v.setGravity(Gravity.CENTER);
             tbrow.addView(t3v);
 
             TextView t4v = new TextView(this);
-            t4v.setText("" + i * 15 / 32 * 10);
+            t4v.setText("" + glucose.get(i) );
             t4v.setTextColor(Color.BLACK);
             t4v.setGravity(Gravity.CENTER);
             tbrow.addView(t4v);
