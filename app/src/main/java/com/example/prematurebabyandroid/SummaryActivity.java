@@ -27,6 +27,6 @@ public class SummaryActivity extends AppCompatActivity {
                 new DataPoint(4, 6)
         });
         graph.addSeries(series);
-
     }
+
 }
