@@ -108,34 +108,41 @@ public class MainActivity extends AppCompatActivity {
 
                     String resBody = response.body();
 
+
                     String patientString = resBody.substring(resBody.indexOf("}")+1);
                     patientString.trim();
 
                     Gson patientGson = new Gson();
                     Patient patient = patientGson.fromJson(patientString, Patient.class);
 
-                    if (patient.getLen() != 0) {
+                    try {
+                        if (patient.getLen() != 0) {
 //                        Displays a Toast notification to the user showing that the patient ID is
 //                        valid
-                        Toast.makeText(MainActivity.this, "Patient Found!",
-                                Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Patient Found!",
+                            Toast.LENGTH_LONG).show();
 
-                        System.out.println(patient.getRow(0));
+                            System.out.println(patient.getRow(0));
 
 //                        Send the patient ID and the patient class to the next activity
-                        toFoundPatient.putExtra("EXTRA_PATIENT_ID", patientID);
-                        toFoundPatient.putExtra("EXTRA_PATIENT", (Parcelable) patient);
+                            toFoundPatient.putExtra("EXTRA_PATIENT_ID", patientID);
+                            toFoundPatient.putExtra("EXTRA_PATIENT", (Parcelable) patient);
 
 //                        Starts the next activity
-                        startActivity(toFoundPatient);
-                    }
-
-                    else{
+                            startActivity(toFoundPatient);
+                        } else {
 //                        Displays a Toast notification to the user showing that the patient ID is
 //                        not valid
-                        Toast.makeText(MainActivity.this, "Patient not found in Database!",
+                            Toast.makeText(MainActivity.this, "Patient not found in Database!",
+                            Toast.LENGTH_LONG).show();
+                        }
+                    } catch (NullPointerException e){
+//                        Displays an Toast notification to the user if the servlet cannot handle
+//                        the input
+                        Toast.makeText(MainActivity.this, "Server Communication Error! Contact Support",
                         Toast.LENGTH_LONG).show();
                     }
+
 
                 }
                 else {
