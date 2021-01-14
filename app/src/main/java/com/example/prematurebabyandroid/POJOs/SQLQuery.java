@@ -1,15 +1,14 @@
 package com.example.prematurebabyandroid.POJOs;
 
 public class SQLQuery {
-    //fields
-    protected String _type;
 
-    //constructor, although you would never need to use this?
+    //fields
+    protected String _type = "None";
+    protected String sqlStr = "Null";
+
     public SQLQuery(){
-        _type = "None";
     }
 
-    //
     public String get_type() {
         return _type;
     }

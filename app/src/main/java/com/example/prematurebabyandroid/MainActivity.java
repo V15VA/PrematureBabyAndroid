@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 //                  If the server reports a successful response, do the following
 
                     System.out.println("SUCCESS");
-//                    System.out.println(response.body());
+                    System.out.println(response.body());
 
                     String resBody = response.body();
 

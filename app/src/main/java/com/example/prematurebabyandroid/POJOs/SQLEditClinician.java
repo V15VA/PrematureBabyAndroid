@@ -1,8 +1,11 @@
 package com.example.prematurebabyandroid.POJOs;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Time;
 
-public class SQLEditClinician  extends SQLEdit {
+public class SQLEditClinician extends SQLEdit implements Executeable{
     protected String comment;
     protected double glucose_input;
     protected double lactate_input;
@@ -22,14 +25,43 @@ public class SQLEditClinician  extends SQLEdit {
         this.potassium_input = potassium_input;
         this.event_type = event_type;
         this.time = time;
+        sqlStr = "UPDATE " + "patients"+ " SET glucose_input = " + glucose_input + ", potassium_input = " +
+                potassium_input + ", sodium_input = " + sodium_input + ", lactate_input = " + lactate_input +
+                ", event_type = \'" +  event_type + "\', comments = \'" + comment + "\' WHERE time = \'" + time + "\' AND patient_id = 2342;";
+    }
+
+    //Access Methods
+    public String getComment() {
+        return comment;
+    }
+
+    public double getGlucose_input() {
+        return glucose_input;
+    }
+
+    public double getLactate_input(){
+        return lactate_input;
+    }
+
+    public double getSodium_input() {
+        return sodium_input;
+    }
+
+
+    public double getPotassium_input() {
+        return potassium_input;
+    }
+
+    public String getEvent_type() {
+        return event_type;
+    }
+
+    public Time getTime(){
+        return time;
     }
 
     @Override
-    public String getSQL(){
-        String sqlStr;
-        sqlStr = "UPDATE " + "patients"+ " SET glucose_input = " + glucose_input + ", potassium_input = " +
-                potassium_input + ", sodium_input = " + sodium_input + ", lactate_input = " + lactate_input +
-                ", event_type = \'" +  event_type + "\' WHERE time = \'" + time + "\' AND patient_id = " + patientID + ";";
-        return sqlStr;
+    public ResultSet execute(Statement s) throws SQLException {
+        return null;
     }
 }
