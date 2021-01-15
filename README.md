@@ -3,4 +3,4 @@ An Android App designed for tablets which allows clinicians at Hammersmith Hospi
 
 This app was coded for Android SDK v30, requries at least v16.
 
-*When emulating, please use the Nexus 9 emulator in landscape mode.*
+*When emulating, please use the Nexus 9 emulator in landscape mode. This allows for easy viewing of the tabulated and graphed data*
