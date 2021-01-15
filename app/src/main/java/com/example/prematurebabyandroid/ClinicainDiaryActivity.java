@@ -40,7 +40,13 @@ public class ClinicainDiaryActivity extends AppCompatActivity {
 
     //https://stackoverflow.com/questions/18207470/adding-table-rows-dynamically-in-android
 
+
+    //Dynamically display data in table
     public void init() {
+
+
+        //demo arrays, to be replaced with arrays retrieved from a Get request
+
         ArrayList<String> comment = new ArrayList <String>();
         ArrayList<String> event_type = new ArrayList <String>();
         ArrayList<String> time;
@@ -62,6 +68,7 @@ public class ClinicainDiaryActivity extends AppCompatActivity {
         potassium = patient.getPotassium();
 //        System.out.println("READ");
 //        System.out.println(glucose);
+        //Demo values loaded into arrays
 
 
 
@@ -79,6 +86,8 @@ public class ClinicainDiaryActivity extends AppCompatActivity {
         //new row
 
         TableRow tbrow0 = new TableRow(this);
+
+        //new columns
 
         TextView tv0 = new TextView(this);
         tv0.setText(" Time ");
@@ -112,6 +121,8 @@ public class ClinicainDiaryActivity extends AppCompatActivity {
             //new row
 
             TableRow tbrow = new TableRow(this);
+
+            //new columns displaying data stored in arrays
 
             TextView t0v = new TextView(this);
             t0v.setText("" + time.get(i));

@@ -1,5 +1,5 @@
 package com.example.prematurebabyandroid;
-
+/*
 
 import android.content.Context;
 
@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EnterMeasurementUnitTest {
-
+/*
     private static final String FAKE_STRING = "Entry was successful";
 
     @Mock
@@ -35,3 +35,4 @@ public class EnterMeasurementUnitTest {
     }
 
 }
+*/
