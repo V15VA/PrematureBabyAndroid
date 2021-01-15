@@ -18,6 +18,9 @@ import java.sql.Time;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static java.lang.Double.parseDouble;
+
 public class ClinicianNewMeasurementActivity extends AppCompatActivity {
 
     private int patientID;
@@ -25,16 +28,16 @@ public class ClinicianNewMeasurementActivity extends AppCompatActivity {
 
     //Post request fields entered by user
 
-    float potassium_Value;
+    double potassium_Value;
     EditText potassium_Input;
 
-    float sodium_Value;
+    double sodium_Value;
     EditText sodium_Input;
 
-    float lactate_Value;
+    double lactate_Value;
     EditText lactate_Input;
 
-    float glucose_Value;
+    double glucose_Value;
     EditText glucose_Input;
 
     String time_Value;
@@ -95,16 +98,16 @@ public class ClinicianNewMeasurementActivity extends AppCompatActivity {
 
         time_Value_Sql = Time.valueOf(time_Value);
 
-        potassium_Value = Float.valueOf(potassium_Input.getText().toString());
+        potassium_Value = Double.valueOf(potassium_Input.getText().toString());
         System.out.println(potassium_Value);
 
-        sodium_Value = Float.valueOf(sodium_Input.getText().toString());
+        sodium_Value = Double.valueOf(sodium_Input.getText().toString());
         System.out.println(sodium_Value);
 
-        lactate_Value = Float.valueOf(lactate_Input.getText().toString());
+        lactate_Value = Double.valueOf(lactate_Input.getText().toString());
         System.out.println(lactate_Value);
 
-        glucose_Value = Float.valueOf(glucose_Input.getText().toString());
+        glucose_Value = Double.valueOf(glucose_Input.getText().toString());
         System.out.println(glucose_Value);
 
         notes_Value = notes_Input.getText().toString();
