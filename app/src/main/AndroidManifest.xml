@@ -13,8 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PrematureBabyAndroid">
         <activity android:name=".EngineerDiaryActivity"
+                  android:label="Service Mode Diary"/>
+        <activity android:name=".EngineerLandingActivity"
                   android:label="Service Mode"/>
-        <activity android:name=".EngineerLandingActivity" />
         <activity android:name=".HomePageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

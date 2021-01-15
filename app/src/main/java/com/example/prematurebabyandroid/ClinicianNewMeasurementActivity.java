@@ -164,8 +164,6 @@ public class ClinicianNewMeasurementActivity extends AppCompatActivity {
                             Toast.makeText(ClinicianNewMeasurementActivity.this, "Patient Record Updated Successfully!",
                                     Toast.LENGTH_LONG).show();
 
-//                            System.out.println(patient.getRow(0));
-
                             //Send the patient ID and the patient class to the next activity
 
                             toFoundPatient.putExtra("EXTRA_PATIENT_ID", patientID);

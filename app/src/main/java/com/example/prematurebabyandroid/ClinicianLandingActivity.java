@@ -46,10 +46,7 @@ public class ClinicianLandingActivity extends AppCompatActivity {
 //        instance for communicating with the server
         patientAPIInterface = PatientAPIClient.getClient().create(PatientAPIInterface.class);
 
-//        OLD_PatientController OLDPatientController = new OLD_PatientController();
-//        OLDPatientController.Start();
-
-    }
+}
 
    // Called when the user taps the search button in view_home.xml
 
@@ -73,24 +70,6 @@ public class ClinicianLandingActivity extends AppCompatActivity {
                 0.0, 0.0, 0.0, 0.0, "",
                 Time.valueOf("00:00:00"));
 
-//                        OLD_CharacterController OLDCharacterController = new OLD_CharacterController();
-//                        OLD_Character OLDCharacter = new OLD_Character();
-//                        OLD_CharacterCallback OLDCharacterCallback = new OLD_CharacterCallback() {
-//                            @Override
-//                            public void onSuccess(OLD_Character characterCalled) {
-//                                OLDCharacter.setID(characterCalled.getID());
-//                                OLDCharacter.setName(characterCalled.getName());
-//                                System.out.println("Name: " + OLDCharacter.getName() + " ID: " + OLDCharacter.getID());
-//                                startActivity(toFoundPatient);
-//                            }
-//
-//                            @Override
-//                            public void onError(Throwable throwable) {
-//
-//                            }
-//                        };
-//                        OLDCharacterController.Start(patientID_string, OLDCharacterCallback);
-
 //        Creates a new POST request of the from SendNewPatientData and queues it to be sent
 //        The POST request is only used here due to time constraints, it acts as a GET request
 //        by writing arbitrary data at a set time
@@ -107,10 +86,8 @@ public class ClinicianLandingActivity extends AppCompatActivity {
 //                  If the server reports a successful response, do the following
 
                     System.out.println("SUCCESS");
-//                    System.out.println(response.body());
 
                     String resBody = response.body();
-
 
                     String patientString = resBody.substring(resBody.indexOf("}")+1);
                     patientString.trim();

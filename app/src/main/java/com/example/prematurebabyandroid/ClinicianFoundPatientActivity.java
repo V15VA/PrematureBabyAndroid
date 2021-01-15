@@ -15,11 +15,8 @@ import java.util.ArrayList;
 
 public class ClinicianFoundPatientActivity extends AppCompatActivity {
 
-    EditText patientIDinput;
-    TextView searchedFor;
     private int patientID;
     Patient patient;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +24,6 @@ public class ClinicianFoundPatientActivity extends AppCompatActivity {
         setContentView(R.layout.view_clinician_found_patient);
 
         patientID = getIntent().getIntExtra("EXTRA_PATIENT_ID", 0);
-//        OLD_Character OLDCharacter = getIntent().getParcelableExtra("EXTRA_PATIENT");
         patient = getIntent().getParcelableExtra("EXTRA_PATIENT");
 
         patient.setPatient_id((ArrayList<Integer>) getIntent().getSerializableExtra("patientIDlist"));
@@ -40,14 +36,6 @@ public class ClinicianFoundPatientActivity extends AppCompatActivity {
         patient.setLactate_input((ArrayList<Double>) getIntent().getSerializableExtra("lactate_input"));
         patient.setGlucose_input((ArrayList<Double>) getIntent().getSerializableExtra("glucose_input"));
 
-//        System.out.println("PATIENT AS FOLLOWS");
-//        System.out.println(patient.getRow(5));
-
-
-
-        searchedFor = (TextView) findViewById(R.id.searched_for);
-//        String message = "Showing data for patient " + OLDCharacter.getName() + " with ID " + OLDCharacter.getID();
-//        searchedFor.setText(message);
 
     }
 
