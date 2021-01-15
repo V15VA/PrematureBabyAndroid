@@ -18,6 +18,7 @@ import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.PointsGraphSeries;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class SummaryActivity extends AppCompatActivity {
 
     Patient patient;
     LineGraphSeries<DataPoint> glucoseSeries, lactateSeries, sodiumSeries, potassiumSeries;
+    PointsGraphSeries<DataPoint> glucoseManualSeries, lactateManualSeries, sodiumManualSeries, potassiumManualSeries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,12 @@ public class SummaryActivity extends AppCompatActivity {
         ArrayList<Double> sodium;
         ArrayList<Double> potassium;
 
+        ArrayList<Double> glucoseManual;
+        ArrayList<Double> lactateManual;
+        ArrayList<Double> sodiumManual;
+        ArrayList<Double> potassiumManual;
+
+
 
 
         //Patient(0, comment, glucose, lactate, sodium, potassium, event_type, time);
@@ -82,6 +90,11 @@ public class SummaryActivity extends AppCompatActivity {
         sodium = patient.getSodium();
         potassium = patient.getPotassium();
 
+        glucoseManual = patient.getGlucose_input();
+        lactateManual = patient.getLactate_input();
+        sodiumManual = patient.getSodium_input();
+        potassiumManual = patient.getPotassium_input();
+
         System.out.println("READ");
         System.out.println(glucose);
 
@@ -93,12 +106,41 @@ public class SummaryActivity extends AppCompatActivity {
         sodiumSeries = new LineGraphSeries<DataPoint>();
         potassiumSeries = new LineGraphSeries<DataPoint>();
 
+
+        glucoseManualSeries = new PointsGraphSeries<DataPoint>();
+        lactateManualSeries = new PointsGraphSeries<DataPoint>();
+        sodiumManualSeries = new PointsGraphSeries<DataPoint>();
+        potassiumManualSeries = new PointsGraphSeries<DataPoint>();
+
+
         for(int i = 0; i<glucose.size(); i++) {
             glucoseSeries.appendData(new DataPoint(i, glucose.get(i)), true, 100000);
             lactateSeries.appendData(new DataPoint(i, lactate.get(i)), true, 100000);
             sodiumSeries.appendData(new DataPoint(i, sodium.get(i)), true, 100000);
             potassiumSeries.appendData(new DataPoint(i, potassium.get(i)), true, 100000);
+
+            Double temp = glucoseManual.get(i);
+            if(temp!=null) {
+                glucoseManualSeries.appendData(new DataPoint(i, temp), true, 100000);
+            }
+            temp = lactateManual.get(i);
+            if(temp!=null) {
+                lactateManualSeries.appendData(new DataPoint(i, temp), true, 100000);
+            }
+            temp = sodiumManual.get(i);
+            if(temp!=null) {
+                sodiumManualSeries.appendData(new DataPoint(i, temp), true, 100000);
+            }
+            temp = potassiumManual.get(i);
+            if(temp!=null) {
+                potassiumManualSeries.appendData(new DataPoint(i, temp), true, 100000);
+            }
         }
+
+
+
+
+
 
 
 
@@ -115,10 +157,28 @@ public class SummaryActivity extends AppCompatActivity {
         potassiumSeries.setColor(Color.CYAN);
         potassiumSeries.setThickness(1);
 
+        glucoseManualSeries.setColor(Color.BLACK);
+        glucoseManualSeries.setSize(8);
+
+        lactateManualSeries.setColor(Color.RED);
+        lactateManualSeries.setSize(8);
+
+        sodiumManualSeries.setColor(Color.BLUE);
+        sodiumManualSeries.setSize(8);
+
+        potassiumManualSeries.setColor(Color.CYAN);
+        potassiumManualSeries.setSize(8);
+
         graph.addSeries(glucoseSeries);
         graph.addSeries(lactateSeries);
         graph.addSeries(sodiumSeries);
         graph.addSeries(potassiumSeries);
+
+        graph.addSeries(glucoseManualSeries);
+        graph.addSeries(lactateManualSeries);
+        graph.addSeries(sodiumManualSeries);
+        graph.addSeries(potassiumManualSeries);
+
 
         // set manual X bounds
         graph.getViewport().setXAxisBoundsManual(true);
@@ -139,6 +199,11 @@ public class SummaryActivity extends AppCompatActivity {
         lactateSeries.setTitle("Lactate");
         sodiumSeries.setTitle("Sodium");
         potassiumSeries.setTitle("Potassium");
+
+        glucoseManualSeries.setTitle("Glucose manual input");
+        lactateManualSeries.setTitle("Lactate manual input");
+        sodiumManualSeries.setTitle("Sodium manual input");
+        potassiumManualSeries.setTitle("Potassium manual input");
 
         graph.getLegendRenderer().setVisible(true);
         graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);

@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static java.lang.Double.parseDouble;
+
 public class ClinicianNewMeasurementActivity extends AppCompatActivity {
 
     private int patientID;
