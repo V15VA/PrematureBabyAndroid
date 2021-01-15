@@ -165,14 +165,30 @@ public class ClinicainDiaryActivity extends AppCompatActivity {
             t4v.setGravity(Gravity.CENTER);
             tbrow.addView(t4v);
 
+
             TextView t5v = new TextView(this);
-            t5v.setText("" + event_type.get(i));
+            String temp = event_type.get(i);
+            if(temp!=null) {
+                t5v.setText("" + temp);
+            }
+            if(temp==null)
+            {
+                t5v.setText("-");
+            }
             t5v.setTextColor(Color.BLACK);
             t5v.setGravity(Gravity.CENTER);
             tbrow.addView(t5v);
 
+
             TextView t6v = new TextView(this);
-            t6v.setText("" + comment.get(i));
+            String temp2 = comment.get(i);
+            if(temp2!=null) {
+                t6v.setText("" + temp2);
+            }
+            if(temp2==null)
+            {
+                t6v.setText("-");
+            }
             t6v.setTextColor(Color.BLACK);
             t6v.setGravity(Gravity.CENTER);
             tbrow.addView(t6v);
