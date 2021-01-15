@@ -23,18 +23,6 @@ public class Patient implements Parcelable {
     private ArrayList<String> filter_type;
 
 
-//    public Patient(int patient_id, ArrayList<String> comments, ArrayList<Double> glucose, ArrayList<Double> lactate,
-//                   ArrayList<Double> sodium, ArrayList<Double> potassium, ArrayList<String> event_type, ArrayList<String> time) {
-//
-//        this.comments = comments;
-//        this.glucose = glucose;
-//        this.lactate = lactate;
-//        this.sodium = sodium;
-//        this.potassium = potassium;
-//        this.event_type = event_type;
-//        this.time = time;
-//
-//    }
 
     public Patient(int patient_id, ArrayList<String> date, ArrayList<String> time,
                    ArrayList<Double> potassium, ArrayList<Double> sodium, ArrayList<Double> lactate,
@@ -58,28 +46,6 @@ public class Patient implements Parcelable {
         this.prescription = prescription;
         this.filter_type = filter_type;
     }
-
-
-    protected Patient(Parcel in) {
-        date = in.createStringArrayList();
-        time = in.createStringArrayList();
-        event_type = in.createStringArrayList();
-        comments = in.createStringArrayList();
-        prescription = in.createStringArrayList();
-        filter_type = in.createStringArrayList();
-    }
-
-    public static final Creator<Patient> CREATOR = new Creator<Patient>() {
-        @Override
-        public Patient createFromParcel(Parcel in) {
-            return new Patient(in);
-        }
-
-        @Override
-        public Patient[] newArray(int size) {
-            return new Patient[size];
-        }
-    };
 
     public ArrayList<Integer> getPatient_id() {
         return patient_id;
@@ -230,6 +196,27 @@ public class Patient implements Parcelable {
 //    can be passed between activities, Parcelable does not include methods to pass Double
 //    ArrayLists easily within custom objects so these are passed individually using getters and
 //    setters
+
+    protected Patient(Parcel in) {
+        date = in.createStringArrayList();
+        time = in.createStringArrayList();
+        event_type = in.createStringArrayList();
+        comments = in.createStringArrayList();
+        prescription = in.createStringArrayList();
+        filter_type = in.createStringArrayList();
+    }
+
+    public static final Creator<Patient> CREATOR = new Creator<Patient>() {
+        @Override
+        public Patient createFromParcel(Parcel in) {
+            return new Patient(in);
+        }
+
+        @Override
+        public Patient[] newArray(int size) {
+            return new Patient[size];
+        }
+    };
 
     @Override
     public int describeContents() {

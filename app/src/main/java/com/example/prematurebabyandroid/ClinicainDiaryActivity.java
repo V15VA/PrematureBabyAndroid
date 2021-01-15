@@ -44,7 +44,6 @@ public class ClinicainDiaryActivity extends AppCompatActivity {
     //Dynamically display data in table
     public void init() {
 
-
         //demo arrays, to be replaced with arrays retrieved from a Get request
 
         ArrayList<String> comment = new ArrayList <String>();
