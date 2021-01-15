@@ -49,8 +49,10 @@ public class EngineerDiaryActivity extends AppCompatActivity {
 
         //demo arrays, to be replaced with arrays retrieved from a Get request
 
-        ArrayList<String> comment; //= new ArrayList <String>();
-        ArrayList<String> event_type; //= new ArrayList <String>();
+        //ArrayList<String> comment; //= new ArrayList <String>();
+        //ArrayList<String> event_type; //= new ArrayList <String>();
+
+        ArrayList<String> filter_type;
         ArrayList<String> time;
 
 
@@ -61,26 +63,16 @@ public class EngineerDiaryActivity extends AppCompatActivity {
 
         //Patient(0, comment, glucose, lactate, sodium, potassium, event_type, time);
 
-        comment = patient.getComments();
-        event_type = patient.getEvent_type();
+        //comment = patient.getComments();
+        //event_type = patient.getEvent_type();
+
+        filter_type = patient.getFilter_type();
         time = patient.getTime();
         glucose = patient.getGlucose();
         lactate = patient.getLactate();
         sodium = patient.getSodium();
         potassium = patient.getPotassium();
-//        System.out.println("READ");
-//        System.out.println(glucose);
-        //Demo values loaded into arrays
 
-
-
-//        for (int i = 0; i < 100; i++) {
-//            time.add(String.valueOf(i));
-//            glucose.add((double) i);
-//            lactate.add((double) i);
-//            sodium.add((double) i);
-//            potassium.add((double) i);
-//        }
 
 
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
@@ -116,16 +108,21 @@ public class EngineerDiaryActivity extends AppCompatActivity {
         tv4.setTextColor(Color.BLACK);
         tbrow0.addView(tv4);
 
-        TextView tv5 = new TextView(this);
-        tv5.setText(" Event ");
-        tv5.setTextColor(Color.BLACK);
-        tbrow0.addView(tv5);
+        //TextView tv5 = new TextView(this);
+        //tv5.setText(" Event ");
+        //tv5.setTextColor(Color.BLACK);
+        //tbrow0.addView(tv5);
 
 
-        TextView tv6 = new TextView(this);
-        tv6.setText(" Notes ");
-        tv6.setTextColor(Color.BLACK);
-        tbrow0.addView(tv6);
+        //TextView tv6 = new TextView(this);
+        //tv6.setText(" Notes ");
+        //tv6.setTextColor(Color.BLACK);
+        //tbrow0.addView(tv6);
+
+        TextView tv7 = new TextView(this);
+        tv7.setText(" Filter Type ");
+        tv7.setTextColor(Color.BLACK);
+        tbrow0.addView(tv7);
 
         stk.addView(tbrow0);
 
@@ -167,6 +164,7 @@ public class EngineerDiaryActivity extends AppCompatActivity {
             t4v.setGravity(Gravity.CENTER);
             tbrow.addView(t4v);
 
+            /*
 
             TextView t5v = new TextView(this);
             String temp = event_type.get(i);
@@ -194,6 +192,23 @@ public class EngineerDiaryActivity extends AppCompatActivity {
             t6v.setTextColor(Color.BLACK);
             t6v.setGravity(Gravity.CENTER);
             tbrow.addView(t6v);
+
+            */
+
+            TextView t7v = new TextView(this);
+            String temp3 = filter_type.get(i);
+            if(temp3!=null) {
+                t7v.setText("" + temp3);
+            }
+            if(temp3==null)
+            {
+                t7v.setText("-");
+            }
+            t7v.setTextColor(Color.BLACK);
+            t7v.setGravity(Gravity.CENTER);
+            tbrow.addView(t7v);
+
+
 
             stk.addView(tbrow);
         }
