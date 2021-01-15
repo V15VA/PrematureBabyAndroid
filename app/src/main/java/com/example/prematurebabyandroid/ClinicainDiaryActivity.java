@@ -47,8 +47,8 @@ public class ClinicainDiaryActivity extends AppCompatActivity {
 
         //demo arrays, to be replaced with arrays retrieved from a Get request
 
-        ArrayList<String> comment = new ArrayList <String>();
-        ArrayList<String> event_type = new ArrayList <String>();
+        ArrayList<String> comment; //= new ArrayList <String>();
+        ArrayList<String> event_type; //= new ArrayList <String>();
         ArrayList<String> time;
 
 
@@ -114,6 +114,17 @@ public class ClinicainDiaryActivity extends AppCompatActivity {
         tv4.setTextColor(Color.BLACK);
         tbrow0.addView(tv4);
 
+        TextView tv5 = new TextView(this);
+        tv5.setText(" Event ");
+        tv5.setTextColor(Color.BLACK);
+        tbrow0.addView(tv5);
+
+
+        TextView tv6 = new TextView(this);
+        tv6.setText(" Notes ");
+        tv6.setTextColor(Color.BLACK);
+        tbrow0.addView(tv6);
+
         stk.addView(tbrow0);
 
         for (int i = 0; i < time.size(); i++) {
@@ -154,6 +165,17 @@ public class ClinicainDiaryActivity extends AppCompatActivity {
             t4v.setGravity(Gravity.CENTER);
             tbrow.addView(t4v);
 
+            TextView t5v = new TextView(this);
+            t5v.setText("" + event_type.get(i));
+            t5v.setTextColor(Color.BLACK);
+            t5v.setGravity(Gravity.CENTER);
+            tbrow.addView(t5v);
+
+            TextView t6v = new TextView(this);
+            t6v.setText("" + comment.get(i));
+            t6v.setTextColor(Color.BLACK);
+            t6v.setGravity(Gravity.CENTER);
+            tbrow.addView(t6v);
 
             stk.addView(tbrow);
         }
