@@ -16,48 +16,62 @@ import java.util.ArrayList;
 
 public class ClinicainDiaryActivity extends AppCompatActivity {
 
+    Patient patient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.view_clinician_diary);
+
+        patient = getIntent().getParcelableExtra("EXTRA_PATIENT");
+        patient.setPatient_id((ArrayList<Integer>) getIntent().getSerializableExtra("patientID"));
+        patient.setPotassium((ArrayList<Double>) getIntent().getSerializableExtra("potassium"));
+        patient.setSodium((ArrayList<Double>) getIntent().getSerializableExtra("sodium"));
+        patient.setLactate((ArrayList<Double>) getIntent().getSerializableExtra("lactate"));
+        patient.setGlucose((ArrayList<Double>) getIntent().getSerializableExtra("glucose"));
+        patient.setPotassium_input((ArrayList<Double>) getIntent().getSerializableExtra("potassium_input"));
+        patient.setSodium_input((ArrayList<Double>) getIntent().getSerializableExtra("sodium_input"));
+        patient.setLactate_input((ArrayList<Double>) getIntent().getSerializableExtra("lactate_input"));
+        patient.setGlucose_input((ArrayList<Double>) getIntent().getSerializableExtra("glucose_input"));
+
         init();
     }
 
     //https://stackoverflow.com/questions/18207470/adding-table-rows-dynamically-in-android
 
     public void init() {
-
-
-
         ArrayList<String> comment = new ArrayList <String>();
         ArrayList<String> event_type = new ArrayList <String>();
-        ArrayList<String> time = new ArrayList <String>();
+        ArrayList<String> time;
 
 
-        ArrayList<Double> glucose = new ArrayList <Double>();
-        ArrayList<Double> lactate = new ArrayList <Double>();
-        ArrayList<Double> sodium = new ArrayList <Double>();
-        ArrayList<Double> potassium = new ArrayList <Double>();
-
-
+        ArrayList<Double> glucose;
+        ArrayList<Double> lactate;
+        ArrayList<Double> sodium;
+        ArrayList<Double> potassium;
 
        //Patient(0, comment, glucose, lactate, sodium, potassium, event_type, time);
 
+         comment = patient.getComments();
+         event_type = patient.getEvent_type();
+         time = patient.getTime();
+         glucose = patient.getGlucose();
+        lactate = patient.getLactate();
+        sodium = patient.getSodium();
+        potassium = patient.getPotassium();
+//        System.out.println("READ");
+//        System.out.println(glucose);
 
 
 
-
-        for (int i = 0; i < 100; i++) {
-            time.add(String.valueOf(i));
-            glucose.add((double) i);
-            lactate.add((double) i);
-            sodium.add((double) i);
-            potassium.add((double) i);
-        }
-
-
-
+//        for (int i = 0; i < 100; i++) {
+//            time.add(String.valueOf(i));
+//            glucose.add((double) i);
+//            lactate.add((double) i);
+//            sodium.add((double) i);
+//            potassium.add((double) i);
+//        }
 
 
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);

@@ -28,8 +28,7 @@
         <activity
             android:name=".ClinicianNewMeasurementActivity"
             android:label="Add New Measurement"
-            android:parentActivityName=".ClinicianLandingActivity"
-            tools:ignore="Instantiatable" />
+            android:parentActivityName=".ClinicianLandingActivity" />
         <activity
             android:name=".SummaryActivity"
             android:label="Patient Summary"

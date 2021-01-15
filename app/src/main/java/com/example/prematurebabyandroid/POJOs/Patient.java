@@ -19,7 +19,7 @@ public class Patient implements Parcelable {
     private ArrayList<Double> glucose_input;
     private ArrayList<String> event_type;
     private ArrayList<String> comments;
-    private ArrayList<String> presrcription;
+    private ArrayList<String> prescription;
     private ArrayList<String> filter_type;
 
 
@@ -41,7 +41,7 @@ public class Patient implements Parcelable {
                    ArrayList<Double> glucose, ArrayList<Double> potassium_input,
                    ArrayList<Double> sodium_input, ArrayList<Double> lactate_input,
                    ArrayList<Double> glucose_input, ArrayList<String> event_type,
-                   ArrayList<String> comments, ArrayList<String> presrcription,
+                   ArrayList<String> comments, ArrayList<String> prescription,
                    ArrayList<String> filter_type) {
         this.date = date;
         this.time = time;
@@ -55,75 +55,9 @@ public class Patient implements Parcelable {
         this.glucose_input = glucose_input;
         this.event_type = event_type;
         this.comments = comments;
-        this.presrcription = presrcription;
+        this.prescription = prescription;
         this.filter_type = filter_type;
     }
-
-
-
-//    public ArrayList<Integer> getPatient_id() {
-//        return patient_id;
-//    }
-//
-//    public void setPatient_id(ArrayList<Integer> patient_id) {
-//        this.patient_id = patient_id;
-//    }
-//
-//    public ArrayList<String> getComments() {
-//        return comments;
-//    }
-//
-//    public void setComments(ArrayList<String> comments) {
-//        this.comments = comments;
-//    }
-//
-//    public ArrayList<Double> getGlucose() {
-//        return glucose;
-//    }
-//
-//    public void setGlucose(ArrayList<Double> glucose) {
-//        this.glucose = glucose;
-//    }
-//
-//    public ArrayList<Double> getLactate() {
-//        return lactate;
-//    }
-//
-//    public void setLactate(ArrayList<Double> lactate) {
-//        this.lactate = lactate;
-//    }
-//
-//    public ArrayList<Double> getSodium() {
-//        return sodium;
-//    }
-//
-//    public void setSodium(ArrayList<Double> sodium) {
-//        this.sodium = sodium;
-//    }
-//
-//    public ArrayList<Double> getPotassium() {
-//        return potassium;
-//    }
-//
-//    public void setPotassium(ArrayList<Double> potassium) {
-//        this.potassium = potassium;
-//    }
-//
-//    public ArrayList<String> getEvent_type() {
-//        return event_type;
-//    }
-//
-//    public void setEvent_type(ArrayList<String> event_type) {
-//        this.event_type = event_type;
-//    }
-//
-//    public ArrayList<String> getTime() {
-//        return time;
-//    }
-//
-//    public void setTime(ArrayList<String> time) {
-//        this.time = time;
-//    }
 
 
     protected Patient(Parcel in) {
@@ -131,7 +65,7 @@ public class Patient implements Parcelable {
         time = in.createStringArrayList();
         event_type = in.createStringArrayList();
         comments = in.createStringArrayList();
-        presrcription = in.createStringArrayList();
+        prescription = in.createStringArrayList();
         filter_type = in.createStringArrayList();
     }
 
@@ -251,12 +185,12 @@ public class Patient implements Parcelable {
         this.comments = comments;
     }
 
-    public ArrayList<String> getPresrcription() {
-        return presrcription;
+    public ArrayList<String> getPrescription() {
+        return prescription;
     }
 
-    public void setPresrcription(ArrayList<String> presrcription) {
-        this.presrcription = presrcription;
+    public void setPrescription(ArrayList<String> prescription) {
+        this.prescription = prescription;
     }
 
     public ArrayList<String> getFilter_type() {
@@ -266,19 +200,6 @@ public class Patient implements Parcelable {
     public void setFilter_type(ArrayList<String> filter_type) {
         this.filter_type = filter_type;
     }
-
-//    public String getRow(int rowNum) {
-//        return "Patient{" +
-//                "patientID=" + patient_id.get(rowNum) +
-////                ", comment=" + comments.get(rowNum) +
-//                ", glucose=" + glucose.get(rowNum) +
-//                ", lactate=" + lactate.get(rowNum) +
-//                ", sodium=" + sodium.get(rowNum) +
-//                ", potassium=" + potassium.get(rowNum) +
-//                ", event_type=" + event_type.get(rowNum) +
-//                ", time=" + time.get(rowNum) +
-//                '}';
-//    }
 
     public int getLen(){
         return patient_id.size();
@@ -300,10 +221,15 @@ public class Patient implements Parcelable {
                 ", glucose_input=" + glucose_input.get(rowNum) +
                 ", event_type=" + event_type.get(rowNum) +
                 ", comments=" + comments.get(rowNum) +
-//                ", presrcription=" + presrcription.get(rowNum) +
+                ", prescription=" + prescription.get(rowNum) +
                 ", filter_type=" + filter_type.get(rowNum) +
                 '}';
     }
+
+//    Allows the Patient class to implement the Parcelable method, so that the String ArrayLists
+//    can be passed between activities, Parcelable does not include methods to pass Double
+//    ArrayLists easily within custom objects so these are passed individually using getters and
+//    setters
 
     @Override
     public int describeContents() {
@@ -316,15 +242,12 @@ public class Patient implements Parcelable {
         dest.writeStringList(time);
         dest.writeStringList(event_type);
         dest.writeStringList(comments);
-        dest.writeStringList(presrcription);
+        dest.writeStringList(prescription);
         dest.writeStringList(filter_type);
-//        dest.writeList(glucose);
-//        dest.writeTypedList(lactate);
     }
 
 
-//    Allows the Patient class to implement the Parcelable method, so that it can be passed between
-//    activities
+
 
 
 

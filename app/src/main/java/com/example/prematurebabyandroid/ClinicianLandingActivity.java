@@ -118,8 +118,9 @@ public class ClinicianLandingActivity extends AppCompatActivity {
                     Patient patient = patientGson.fromJson(patientString, Patient.class);
 
                     System.out.println(patient.getLen());
+                    System.out.println(patient.getLen());
 
-//                    try {
+                    try {
                         if (patient.getLen() != 0) {
 //                        Displays a Toast notification to the user showing that the patient ID is
 //                        valid
@@ -130,9 +131,29 @@ public class ClinicianLandingActivity extends AppCompatActivity {
 
 //                        Send the patient ID and the patient class to the next activity
                             toFoundPatient.putExtra("EXTRA_PATIENT_ID", patientID);
-                            toFoundPatient.putExtra("EXTRA_PATIENT", (Parcelable) patient);
-//                            ArrayList<Double> glucose = patient.getGlucose();
-//                            toFoundPatient.putParcelableArrayListExtra("EXTRA_GLUCOSE", glucose);
+                            toFoundPatient.putExtra("EXTRA_PATIENT", patient);
+
+//                            Non-String arraylists must be sent separately due to limitations of the
+//                            Parcelable class
+
+                            ArrayList<Integer> patientIDlist = patient.getPatient_id();
+                            toFoundPatient.putExtra("patientIDlist", patientIDlist);
+                            ArrayList<Double> potassium = patient.getPotassium();
+                            toFoundPatient.putExtra("potassium", potassium);
+                            ArrayList<Double> sodium = patient.getSodium();
+                            toFoundPatient.putExtra("sodium", sodium);
+                            ArrayList<Double> lactate = patient.getLactate();
+                            toFoundPatient.putExtra("lactate", lactate);
+                            ArrayList<Double> glucose = patient.getGlucose();
+                            toFoundPatient.putExtra("glucose", glucose);
+                            ArrayList<Double> potassium_input = patient.getPotassium_input();
+                            toFoundPatient.putExtra("potassium_input", potassium_input);
+                            ArrayList<Double> sodium_input = patient.getSodium_input();
+                            toFoundPatient.putExtra("sodium_input", sodium_input);
+                            ArrayList<Double> lactate_input = patient.getLactate_input();
+                            toFoundPatient.putExtra("lactate_input", lactate_input);
+                            ArrayList<Double> glucose_input = patient.getGlucose_input();
+                            toFoundPatient.putExtra("glucose_input", glucose_input);
 
 //                        Starts the next activity
                             startActivity(toFoundPatient);
@@ -142,12 +163,12 @@ public class ClinicianLandingActivity extends AppCompatActivity {
                             Toast.makeText(ClinicianLandingActivity.this, "Patient not found in Database!",
                             Toast.LENGTH_LONG).show();
                         }
-//                    } catch (NullPointerException e){
+                    } catch (NullPointerException e){
 //                        Displays an Toast notification to the user if the servlet cannot handle
 //                        the input
-//                        Toast.makeText(ClinicianLandingActivity.this, "Server Communication Error! Contact Support",
-//                        Toast.LENGTH_LONG).show();
-//                    }
+                        Toast.makeText(ClinicianLandingActivity.this, "Server Communication Error! Contact Support",
+                        Toast.LENGTH_LONG).show();
+                    }
 
 
                 }
