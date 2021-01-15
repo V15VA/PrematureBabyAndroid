@@ -4,7 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.Window;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
+import com.example.prematurebabyandroid.POJOs.Filter;
+import com.example.prematurebabyandroid.POJOs.Patient;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.LegendRenderer;
@@ -12,180 +19,142 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class SummaryActivity extends AppCompatActivity {
 
-    LineGraphSeries<DataPoint> series, series2,series3;
 
+    Patient patient;
+    LineGraphSeries<DataPoint> glucoseSeries, lactateSeries, sodiumSeries, potassiumSeries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.view_clinician_view_summary);
 
-/*
-        //https://github.com/jjoe64/GraphView
-        //example code so demonstrate use
+        patient = getIntent().getParcelableExtra("EXTRA_PATIENT");
+        patient.setPatient_id((ArrayList<Integer>) getIntent().getSerializableExtra("patientID"));
+        patient.setPotassium((ArrayList<Double>) getIntent().getSerializableExtra("potassium"));
+        patient.setSodium((ArrayList<Double>) getIntent().getSerializableExtra("sodium"));
+        patient.setLactate((ArrayList<Double>) getIntent().getSerializableExtra("lactate"));
+        patient.setGlucose((ArrayList<Double>) getIntent().getSerializableExtra("glucose"));
+        patient.setPotassium_input((ArrayList<Double>) getIntent().getSerializableExtra("potassium_input"));
+        patient.setSodium_input((ArrayList<Double>) getIntent().getSerializableExtra("sodium_input"));
+        patient.setLactate_input((ArrayList<Double>) getIntent().getSerializableExtra("lactate_input"));
+        patient.setGlucose_input((ArrayList<Double>) getIntent().getSerializableExtra("glucose_input"));
 
-        GraphView graph = (GraphView) findViewById(R.id.graph);
-
-        LineGraphSeries<DataPoint> series1 = new LineGraphSeries<DataPoint>(new DataPoint[] {
-
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-
-        });
-
-        graph.addSeries(series1);
-
+        init();
     }
-*/
+
+
+
+    public void init() {
+
 
         //demo arrays, to be replaced with arrays retrieved from a Get request
 
-
-        GraphView graph = (GraphView) findViewById(R.id.graph);
-
-        series = new LineGraphSeries<DataPoint>();
-
-        series2 = new LineGraphSeries<DataPoint>();
-        series2.setColor(Color.BLACK);
-
-        series3 = new LineGraphSeries<DataPoint>();
-        series3.setDrawDataPoints(true);
-        series3.setDataPointsRadius(10);
-        series3.setThickness(8);
-        series3.setColor(Color.RED);
-
-
-
         ArrayList<String> comment = new ArrayList <String>();
         ArrayList<String> event_type = new ArrayList <String>();
-        ArrayList<String> time = new ArrayList <String>();
-        ArrayList<Double> glucose = new ArrayList <Double>();
-        ArrayList<Double> lactate = new ArrayList <Double>();
-        ArrayList<Double> sodium = new ArrayList <Double>();
-        ArrayList<Double> potassium = new ArrayList <Double>();
+        ArrayList<String> time;
 
-        //Demo values loaded into arrays and appended onto data series for plotting
 
-        for (int i = 0; i < 500; i++) {
+        ArrayList<Double> glucose;
+        ArrayList<Double> lactate;
+        ArrayList<Double> sodium;
+        ArrayList<Double> potassium;
 
-            time.add(String.valueOf(i));
+        //Patient(0, comment, glucose, lactate, sodium, potassium, event_type, time);
 
-            glucose.add((double) 1.5*i);
-            series.appendData(new DataPoint(Double.parseDouble(time.get(i)),glucose.get(i)), true, 500);
+        comment = patient.getComments();
+        event_type = patient.getEvent_type();
+        time = patient.getTime();
+        glucose = patient.getGlucose();
+        lactate = patient.getLactate();
+        sodium = patient.getSodium();
+        potassium = patient.getPotassium();
 
-            lactate.add((double) 2*i);
-            series.appendData(new DataPoint(Double.parseDouble(time.get(i)),lactate.get(i)), true, 500);
+        System.out.println("READ");
+        System.out.println(glucose);
+        //Demo values loaded into arrays
 
-            sodium.add((double) 2.5*i);
 
-            potassium.add((double) 3*i);
+
+        GraphView graph = (GraphView) findViewById(R.id.graph);
+        glucoseSeries = new LineGraphSeries<DataPoint>();
+        lactateSeries = new LineGraphSeries<DataPoint>();
+        sodiumSeries = new LineGraphSeries<DataPoint>();
+        potassiumSeries = new LineGraphSeries<DataPoint>();
+
+        for(int i = 0; i<glucose.size(); i++) {
+
+            glucoseSeries.appendData(new DataPoint(i, glucose.get(i)), true, 100000);
+            lactateSeries.appendData(new DataPoint(i, lactate.get(i)), true, 100000);
+            sodiumSeries.appendData(new DataPoint(i, sodium.get(i)), true, 100000);
+            potassiumSeries.appendData(new DataPoint(i, potassium.get(i)), true, 100000);
         }
 
+        //series colors
+        glucoseSeries.setColor(Color.BLACK);
+        glucoseSeries.setThickness(1);
 
-        //adds highlighted red data point, use for manually inputted blood values
+        lactateSeries.setColor(Color.RED);
+        lactateSeries.setThickness(1);
 
-            series3.appendData(new DataPoint(1,1), true, 500);
+        sodiumSeries.setColor(Color.BLUE);
+        sodiumSeries.setThickness(1);
 
-        graph.addSeries(series);
-        graph.addSeries(series2);
-        graph.addSeries(series3);
+        potassiumSeries.setColor(Color.CYAN);
+        potassiumSeries.setThickness(1);
 
+        graph.addSeries(glucoseSeries);
+        graph.addSeries(lactateSeries);
+        graph.addSeries(sodiumSeries);
+        graph.addSeries(potassiumSeries);
 
         // set manual X bounds
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(24.0);
+        graph.getViewport().setMaxX(1500);
 
         // set manual Y bounds
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
-        graph.getViewport().setMaxY(10);
+        graph.getViewport().setMaxY(150);
 
         graph.getViewport().setScrollable(true);
         graph.getViewport().setScalable(true);
 
 
-        /*
-        //getting GraphView instance for glucose graph
-        GraphView biomarkerGraph = (GraphView) findViewById(R.id.glucose_graph);
-
-        //data for glucose graph
-        LineGraphSeries<DataPoint> glucoseSeries = new LineGraphSeries<DataPoint>(new DataPoint[] {
-                //glucose.appendData(new DataPoint());
-                new DataPoint(0, 2),
-                new DataPoint(1, 6),
-                new DataPoint(2, 7),
-                new DataPoint(3, 8),
-                new DataPoint(4, 6)
-
-        });
-        biomarkerGraph.addSeries(glucoseSeries);
-        //legend formatting
-
-        //data for lactate graph
-        LineGraphSeries<DataPoint> lactateSeries = new LineGraphSeries<DataPoint>(new DataPoint[] {
-                //glucose.appendData(new DataPoint());
-                new DataPoint(0, 4),
-                new DataPoint(1, 6),
-                new DataPoint(2, 8),
-                new DataPoint(3, 6),
-                new DataPoint(4, 5)
-
-        });
-        biomarkerGraph.addSeries(lactateSeries);
-
-        //data for potassium graph
-        LineGraphSeries<DataPoint> potassiumSeries  = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 3),
-                new DataPoint(2, 7),
-                new DataPoint(3, 6),
-                new DataPoint(4, 4)
-        });
-        biomarkerGraph.addSeries(potassiumSeries);
-
-        //data for sodium graph
-        LineGraphSeries<DataPoint> sodiumSeries = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 3),
-                new DataPoint(1, 3),
-                new DataPoint(2, 6),
-                new DataPoint(3, 2),
-                new DataPoint(4, 5)
-        });
-        biomarkerGraph.addSeries(sodiumSeries);
-
-        //series colors
-        glucoseSeries.setColor(Color.BLUE);
-        lactateSeries.setColor(Color.GREEN);
-        potassiumSeries.setColor(Color.RED);
-        sodiumSeries.setColor(Color.YELLOW);
-
         //legends
         glucoseSeries.setTitle("Glucose");
         lactateSeries.setTitle("Lactate");
-        potassiumSeries.setTitle("Potassium");
         sodiumSeries.setTitle("Sodium");
-        biomarkerGraph.getLegendRenderer().setVisible(true);
-        biomarkerGraph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
+        potassiumSeries.setTitle("Potassium");
+
+        graph.getLegendRenderer().setVisible(true);
+        graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
 
         //setting graph title
-        biomarkerGraph.setTitle("Biomarker Concentrations");
-        biomarkerGraph.setTitleTextSize(60);
-        biomarkerGraph.setTitleColor(Color.BLUE);
+        graph.setTitle("Biomarker Concentrations");
+        graph.setTitleTextSize(50);
+        graph.setTitleColor(Color.BLACK);
 
         //axis titles
-        GridLabelRenderer gridlabel=biomarkerGraph.getGridLabelRenderer();
+        GridLabelRenderer gridlabel=graph.getGridLabelRenderer();
         gridlabel.setHorizontalAxisTitle("Time");
         gridlabel.setHorizontalAxisTitleTextSize(30);
         gridlabel.setVerticalAxisTitle("Concentration [mmol/L]");
-        gridlabel.setVerticalAxisTitleTextSize(30);*/
+        gridlabel.setVerticalAxisTitleTextSize(30);
+
+
 
     }
+
+
+
+
+
+
 }
