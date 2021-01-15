@@ -15,6 +15,7 @@ public class EngineerLandingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_engineer_landing);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         diaryButton = (Button) findViewById(R.id.diary_btn);
 

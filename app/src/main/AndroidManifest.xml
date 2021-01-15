@@ -15,7 +15,8 @@
         <activity android:name=".EngineerDiaryActivity"
                   android:label="Service Mode Diary"/>
         <activity android:name=".EngineerLandingActivity"
-                  android:label="Service Mode"/>
+                  android:label="Service Mode"
+                  android:parentActivityName=".HomePageActivity"/>
         <activity android:name=".HomePageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
