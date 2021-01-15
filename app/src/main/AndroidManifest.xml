@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PrematureBabyAndroid">
         <activity android:name=".EngineerDiaryActivity"
-            android:label="Service Mode"/>
+                  android:label="Service Mode"/>
         <activity android:name=".EngineerLandingActivity" />
         <activity android:name=".HomePageActivity">
             <intent-filter>
@@ -28,18 +28,19 @@
         <activity
             android:name=".ClinicianNewMeasurementActivity"
             android:label="Add New Measurement"
-            android:parentActivityName=".ClinicianLandingActivity" />
+            android:parentActivityName=".ClinicianFoundPatientActivity" />
         <activity
             android:name=".SummaryActivity"
             android:label="Patient Summary"
-            android:parentActivityName=".ClinicianLandingActivity" />
+            android:parentActivityName=".ClinicianFoundPatientActivity" />
         <activity
             android:name=".ClinicainDiaryActivity"
             android:label="Patient Activity"
-            android:parentActivityName=".ClinicianLandingActivity" />
+            android:parentActivityName=".ClinicianFoundPatientActivity" />
         <activity
             android:name=".ClinicianLandingActivity"
-            android:label="Search for a Patient">
+            android:label="Search for a Patient"
+            android:parentActivityName=".HomePageActivity">
         </activity>
     </application>
 
