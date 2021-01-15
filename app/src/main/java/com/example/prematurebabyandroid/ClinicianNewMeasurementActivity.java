@@ -55,6 +55,15 @@ public class ClinicianNewMeasurementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_clinician_enter_measurement);
 
+        /*
+        //unit testing
+
+        validate(event_Input.getText().toString(),notes_Input.getText().toString(),
+                time_Input.getText().toString(), Float.valueOf(glucose_Input.getText().toString()),
+                Float.valueOf(lactate_Input.getText().toString()), Float.valueOf(sodium_Input.getText().toString()),
+                Float.valueOf(potassium_Input.getText().toString()));
+*/
+
         patientID = getIntent().getIntExtra("EXTRA_PATIENT_ID", 0);
 
         time_Input = (EditText) findViewById(R.id.editTextTime);
