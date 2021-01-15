@@ -70,7 +70,7 @@ public class ClinicianLandingActivity extends AppCompatActivity {
 //        Creates a new instance of the sqlEditClinician class with arbitrary values and the
 //        specified patient ID
         SQLEditClinician sqlEditClinician = new SQLEditClinician(patientID, "",
-                0, 0, 0, 0, "",
+                0.0, 0.0, 0.0, 0.0, "",
                 Time.valueOf("00:00:00"));
 
 //                        OLD_CharacterController OLDCharacterController = new OLD_CharacterController();
@@ -92,11 +92,14 @@ public class ClinicianLandingActivity extends AppCompatActivity {
 //                        OLDCharacterController.Start(patientID_string, OLDCharacterCallback);
 
 //        Creates a new POST request of the from SendNewPatientData and queues it to be sent
+//        The POST request is only used here due to time constraints, it acts as a GET request
+//        by writing arbitrary data at a set time
         Call<String> call = patientAPIInterface.SendNewPatientData(sqlEditClinician);
 
 //        Callback functions which activate if a response is received from the server
 //        onResponse is called when the server responds, onFailure if there is no response
         call.enqueue(new Callback<String>() {
+
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
@@ -112,13 +115,8 @@ public class ClinicianLandingActivity extends AppCompatActivity {
                     String patientString = resBody.substring(resBody.indexOf("}")+1);
                     patientString.trim();
 
-//                    System.out.println(patientString);
-
                     Gson patientGson = new Gson();
                     Patient patient = patientGson.fromJson(patientString, Patient.class);
-
-                    System.out.println(patient.getLen());
-                    System.out.println(patient.getLen());
 
                     try {
                         if (patient.getLen() != 0) {
@@ -133,8 +131,7 @@ public class ClinicianLandingActivity extends AppCompatActivity {
                             toFoundPatient.putExtra("EXTRA_PATIENT_ID", patientID);
                             toFoundPatient.putExtra("EXTRA_PATIENT", patient);
 
-//                            Non-String arraylists must be sent separately due to limitations of the
-//                            Parcelable class
+//                            Non-String ArrayLists must be parcelled individually
 
                             ArrayList<Integer> patientIDlist = patient.getPatient_id();
                             toFoundPatient.putExtra("patientIDlist", patientIDlist);
@@ -179,6 +176,11 @@ public class ClinicianLandingActivity extends AppCompatActivity {
                         System.out.println(response.errorBody().string());
                     } catch (IOException e) {
                         e.printStackTrace();
+//                      Displays an Toast notification to the user if no response is received
+//                      usually due to a timeout
+                        Toast.makeText(ClinicianLandingActivity.this,
+                                "Server Communication Error! Please Restart the App",
+                                Toast.LENGTH_LONG).show();
                     }
                     System.out.println("RESPONSE FAIL");
                 }
@@ -189,6 +191,11 @@ public class ClinicianLandingActivity extends AppCompatActivity {
 //              If the connection to the server fails, print the error
                 t.printStackTrace();
                 System.out.println("CONNECTION FAIL");
+//              Displays an Toast notification to the user if the servlet cannot be
+//              reached
+                Toast.makeText(ClinicianLandingActivity.this,
+                        "Check Internet Connection!",
+                        Toast.LENGTH_LONG).show();
             }
         });
     }

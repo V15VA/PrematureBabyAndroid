@@ -35,7 +35,7 @@
             android:parentActivityName=".ClinicianFoundPatientActivity" />
         <activity
             android:name=".ClinicainDiaryActivity"
-            android:label="Patient Activity"
+            android:label="Patient Diary"
             android:parentActivityName=".ClinicianFoundPatientActivity" />
         <activity
             android:name=".ClinicianLandingActivity"

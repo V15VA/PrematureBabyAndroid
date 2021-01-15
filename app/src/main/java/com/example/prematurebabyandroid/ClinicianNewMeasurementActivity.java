@@ -15,6 +15,8 @@ import com.example.prematurebabyandroid.POJOs.SQLEditClinician;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.Time;
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -57,6 +59,7 @@ public class ClinicianNewMeasurementActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_clinician_enter_measurement);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         /*
         //unit testing
@@ -121,13 +124,12 @@ public class ClinicianNewMeasurementActivity extends AppCompatActivity {
                 lactate_Value, sodium_Value, potassium_Value, event_Value, time_Value_Sql);
 
 
-        //Creates an intent to move to the FoundPatient activity
 
+        //Creates an intent to move to the FoundPatient activity
         Intent toFoundPatient = new Intent(getApplicationContext(), ClinicianFoundPatientActivity.class);
 
 
         //Creates a new POST request of the from SendNewPatientData and queues it to be sent
-
         Call<String> call = patientAPIInterface.SendNewPatientData(postPatient);
 
 
@@ -140,12 +142,10 @@ public class ClinicianNewMeasurementActivity extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
 
-
                     //If the server reports a successful response, do the following
 
                     System.out.println("SUCCESS");
-
-                    //System.out.println(response.body());
+                    System.out.println(response.body());
 
                     String resBody = response.body();
 
@@ -155,43 +155,73 @@ public class ClinicianNewMeasurementActivity extends AppCompatActivity {
                     Gson patientGson = new Gson();
                     Patient patient = patientGson.fromJson(patientString, Patient.class);
 
-                    if (patient.getLen() != 0) {
+                    try {
+                        if (patient.getLen() != 0) {
 
-                        //Displays a Toast notification to the user showing that the patient ID is
-                        //valid
+                            //Displays a Toast notification to the user showing that the patient ID is
+                            //valid
 
-                        Toast.makeText(ClinicianNewMeasurementActivity.this, "Patient Found!",
-                                Toast.LENGTH_LONG).show();
+                            Toast.makeText(ClinicianNewMeasurementActivity.this, "Patient Record Updated Successfully!",
+                                    Toast.LENGTH_LONG).show();
 
-                        System.out.println(patient.getRow(0));
+//                            System.out.println(patient.getRow(0));
 
-                        //Send the patient ID and the patient class to the next activity
+                            //Send the patient ID and the patient class to the next activity
 
-                        toFoundPatient.putExtra("EXTRA_PATIENT_ID", patientID);
-                        toFoundPatient.putExtra("EXTRA_PATIENT", (Parcelable) patient);
+                            toFoundPatient.putExtra("EXTRA_PATIENT_ID", patientID);
+                            toFoundPatient.putExtra("EXTRA_PATIENT", patient);
 
-                        //Starts the next activity
+//                            Non-String ArrayLists must be parcelled individually
 
-                        startActivity(toFoundPatient);
-                    }
+                            ArrayList<Integer> patientIDlist = patient.getPatient_id();
+                            toFoundPatient.putExtra("patientIDlist", patientIDlist);
+                            ArrayList<Double> potassium = patient.getPotassium();
+                            toFoundPatient.putExtra("potassium", potassium);
+                            ArrayList<Double> sodium = patient.getSodium();
+                            toFoundPatient.putExtra("sodium", sodium);
+                            ArrayList<Double> lactate = patient.getLactate();
+                            toFoundPatient.putExtra("lactate", lactate);
+                            ArrayList<Double> glucose = patient.getGlucose();
+                            toFoundPatient.putExtra("glucose", glucose);
+                            ArrayList<Double> potassium_input = patient.getPotassium_input();
+                            toFoundPatient.putExtra("potassium_input", potassium_input);
+                            ArrayList<Double> sodium_input = patient.getSodium_input();
+                            toFoundPatient.putExtra("sodium_input", sodium_input);
+                            ArrayList<Double> lactate_input = patient.getLactate_input();
+                            toFoundPatient.putExtra("lactate_input", lactate_input);
+                            ArrayList<Double> glucose_input = patient.getGlucose_input();
+                            toFoundPatient.putExtra("glucose_input", glucose_input);
+                            //Starts the next activity
 
-                    else{
+                            startActivity(toFoundPatient);
+                        } else {
 
-                        //Displays a Toast notification to the user showing that the patient ID is
-                        //not valid
-                        Toast.makeText(ClinicianNewMeasurementActivity.this,
-                                "Patient not found in Database!",
+                            //Displays a Toast notification to the user showing that the patient ID is
+                            //not valid
+                            Toast.makeText(ClinicianNewMeasurementActivity.this,
+                                    "Patient not found in Database!",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    } catch (NullPointerException e){
+//                        Displays an Toast notification to the user if the servlet cannot handle
+//                        the input
+                        Toast.makeText(ClinicianNewMeasurementActivity.this, "Server Communication Error! Contact Support",
                                 Toast.LENGTH_LONG).show();
                     }
 
                 }
 
                 else {
-                    //If the server reports an unsuccessful response, print the error as a string
+                    //If the server reports an unsuccessful / no response, print the error as a string
                     try {
                         System.out.println(response.errorBody().string());
                     } catch (IOException e) {
                         e.printStackTrace();
+//                      Displays an Toast notification to the user if no response is received
+//                      usually due to a timeout
+                        Toast.makeText(ClinicianNewMeasurementActivity.this,
+                                "Server Communication Error! Please Restart the App",
+                                Toast.LENGTH_LONG).show();
                     }
                     System.out.println("RESPONSE FAIL");
                 }
@@ -204,9 +234,13 @@ public class ClinicianNewMeasurementActivity extends AppCompatActivity {
                 //If the connection to the server fails, print the error
                 t.printStackTrace();
                 System.out.println("CONNECTION FAIL");
+//              Displays an Toast notification to the user if the servlet cannot be
+//              reached
+                Toast.makeText(ClinicianNewMeasurementActivity.this,
+                        "Check Internet Connection!",
+                        Toast.LENGTH_LONG).show();
             }
         });
-
     }
 
 /*
