@@ -15,10 +15,14 @@ import com.example.prematurebabyandroid.POJOs.Patient;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.LegendRenderer;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -65,6 +69,8 @@ public class SummaryActivity extends AppCompatActivity {
         ArrayList<Double> sodium;
         ArrayList<Double> potassium;
 
+
+
         //Patient(0, comment, glucose, lactate, sodium, potassium, event_type, time);
 
         comment = patient.getComments();
@@ -77,7 +83,6 @@ public class SummaryActivity extends AppCompatActivity {
 
         System.out.println("READ");
         System.out.println(glucose);
-        //Demo values loaded into arrays
 
 
 
@@ -88,12 +93,13 @@ public class SummaryActivity extends AppCompatActivity {
         potassiumSeries = new LineGraphSeries<DataPoint>();
 
         for(int i = 0; i<glucose.size(); i++) {
-
             glucoseSeries.appendData(new DataPoint(i, glucose.get(i)), true, 100000);
             lactateSeries.appendData(new DataPoint(i, lactate.get(i)), true, 100000);
             sodiumSeries.appendData(new DataPoint(i, sodium.get(i)), true, 100000);
             potassiumSeries.appendData(new DataPoint(i, potassium.get(i)), true, 100000);
         }
+
+
 
         //series colors
         glucoseSeries.setColor(Color.BLACK);
@@ -143,9 +149,9 @@ public class SummaryActivity extends AppCompatActivity {
 
         //axis titles
         GridLabelRenderer gridlabel=graph.getGridLabelRenderer();
-        gridlabel.setHorizontalAxisTitle("Time");
+        gridlabel.setHorizontalAxisTitle("Time / minutes");
         gridlabel.setHorizontalAxisTitleTextSize(30);
-        gridlabel.setVerticalAxisTitle("Concentration [mmol/L]");
+        gridlabel.setVerticalAxisTitle("Concentration / mmol/L");
         gridlabel.setVerticalAxisTitleTextSize(30);
 
 
