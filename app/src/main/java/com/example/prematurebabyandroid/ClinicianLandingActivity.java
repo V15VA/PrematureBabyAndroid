@@ -99,10 +99,9 @@ public class ClinicianLandingActivity extends AppCompatActivity {
                         if (patient.getLen() != 0) {
 //                        Displays a Toast notification to the user showing that the patient ID is
 //                        valid
-                            Toast.makeText(ClinicianLandingActivity.this, "Patient Found!",
+                            Toast.makeText(ClinicianLandingActivity.this,
+                                    "Patient Found!",
                             Toast.LENGTH_LONG).show();
-
-                            System.out.println(patient.getRow(0));
 
 //                        Send the patient ID and the patient class to the next activity
                             toFoundPatient.putExtra("EXTRA_PATIENT_ID", patientID);
@@ -134,13 +133,15 @@ public class ClinicianLandingActivity extends AppCompatActivity {
                         } else {
 //                        Displays a Toast notification to the user showing that the patient ID is
 //                        not valid
-                            Toast.makeText(ClinicianLandingActivity.this, "Patient not found in Database!",
+                            Toast.makeText(ClinicianLandingActivity.this,
+                                    "Patient not found in Database!",
                             Toast.LENGTH_LONG).show();
                         }
                     } catch (NullPointerException e){
 //                        Displays an Toast notification to the user if the servlet cannot handle
 //                        the input
-                        Toast.makeText(ClinicianLandingActivity.this, "Server Communication Error! Contact Support",
+                        Toast.makeText(ClinicianLandingActivity.this,
+                                "Server Communication Error! Contact Support",
                         Toast.LENGTH_LONG).show();
                     }
 
