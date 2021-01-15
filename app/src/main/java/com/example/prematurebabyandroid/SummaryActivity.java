@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -69,7 +71,7 @@ public class SummaryActivity extends AppCompatActivity {
         ArrayList<Double> sodium = new ArrayList <Double>();
         ArrayList<Double> potassium = new ArrayList <Double>();
 
-        //Demo values loaded into arrays and appanded onto data series for plotting
+        //Demo values loaded into arrays and appended onto data series for plotting
 
         for (int i = 0; i < 500; i++) {
 
@@ -110,6 +112,80 @@ public class SummaryActivity extends AppCompatActivity {
         graph.getViewport().setScalable(true);
 
 
+        /*
+        //getting GraphView instance for glucose graph
+        GraphView biomarkerGraph = (GraphView) findViewById(R.id.glucose_graph);
+
+        //data for glucose graph
+        LineGraphSeries<DataPoint> glucoseSeries = new LineGraphSeries<DataPoint>(new DataPoint[] {
+                //glucose.appendData(new DataPoint());
+                new DataPoint(0, 2),
+                new DataPoint(1, 6),
+                new DataPoint(2, 7),
+                new DataPoint(3, 8),
+                new DataPoint(4, 6)
+
+        });
+        biomarkerGraph.addSeries(glucoseSeries);
+        //legend formatting
+
+        //data for lactate graph
+        LineGraphSeries<DataPoint> lactateSeries = new LineGraphSeries<DataPoint>(new DataPoint[] {
+                //glucose.appendData(new DataPoint());
+                new DataPoint(0, 4),
+                new DataPoint(1, 6),
+                new DataPoint(2, 8),
+                new DataPoint(3, 6),
+                new DataPoint(4, 5)
+
+        });
+        biomarkerGraph.addSeries(lactateSeries);
+
+        //data for potassium graph
+        LineGraphSeries<DataPoint> potassiumSeries  = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, 1),
+                new DataPoint(1, 3),
+                new DataPoint(2, 7),
+                new DataPoint(3, 6),
+                new DataPoint(4, 4)
+        });
+        biomarkerGraph.addSeries(potassiumSeries);
+
+        //data for sodium graph
+        LineGraphSeries<DataPoint> sodiumSeries = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, 3),
+                new DataPoint(1, 3),
+                new DataPoint(2, 6),
+                new DataPoint(3, 2),
+                new DataPoint(4, 5)
+        });
+        biomarkerGraph.addSeries(sodiumSeries);
+
+        //series colors
+        glucoseSeries.setColor(Color.BLUE);
+        lactateSeries.setColor(Color.GREEN);
+        potassiumSeries.setColor(Color.RED);
+        sodiumSeries.setColor(Color.YELLOW);
+
+        //legends
+        glucoseSeries.setTitle("Glucose");
+        lactateSeries.setTitle("Lactate");
+        potassiumSeries.setTitle("Potassium");
+        sodiumSeries.setTitle("Sodium");
+        biomarkerGraph.getLegendRenderer().setVisible(true);
+        biomarkerGraph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
+
+        //setting graph title
+        biomarkerGraph.setTitle("Biomarker Concentrations");
+        biomarkerGraph.setTitleTextSize(60);
+        biomarkerGraph.setTitleColor(Color.BLUE);
+
+        //axis titles
+        GridLabelRenderer gridlabel=biomarkerGraph.getGridLabelRenderer();
+        gridlabel.setHorizontalAxisTitle("Time");
+        gridlabel.setHorizontalAxisTitleTextSize(30);
+        gridlabel.setVerticalAxisTitle("Concentration [mmol/L]");
+        gridlabel.setVerticalAxisTitleTextSize(30);*/
 
     }
 }
