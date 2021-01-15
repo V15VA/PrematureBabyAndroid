@@ -56,6 +56,7 @@ public class ClinicianNewMeasurementActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_clinician_enter_measurement);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         /*
         //unit testing
@@ -237,7 +238,6 @@ public class ClinicianNewMeasurementActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             }
         });
-
     }
 
 /*

@@ -23,6 +23,7 @@ public class ClinicainDiaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.view_clinician_diary);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         patient = getIntent().getParcelableExtra("EXTRA_PATIENT");
         patient.setPatient_id((ArrayList<Integer>) getIntent().getSerializableExtra("patientID"));

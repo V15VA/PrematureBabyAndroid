@@ -37,6 +37,7 @@ public class SummaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.view_clinician_view_summary);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         patient = getIntent().getParcelableExtra("EXTRA_PATIENT");
         patient.setPatient_id((ArrayList<Integer>) getIntent().getSerializableExtra("patientID"));
