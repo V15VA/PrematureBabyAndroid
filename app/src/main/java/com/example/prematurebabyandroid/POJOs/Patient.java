@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Patient implements Parcelable {
     private ArrayList<Integer> patient_id;
     private ArrayList<String> comment;
-    private ArrayList<Double> glucose;
+    private static ArrayList<Double> glucose;
     private ArrayList<Double> lactate;
     private ArrayList<Double> sodium;
     private ArrayList<Double> potassium;
@@ -47,7 +47,7 @@ public class Patient implements Parcelable {
         this.comment = comment;
     }
 
-    public ArrayList<Double> getGlucose() {
+    public static ArrayList<Double> getGlucose() {
         return glucose;
     }
 
